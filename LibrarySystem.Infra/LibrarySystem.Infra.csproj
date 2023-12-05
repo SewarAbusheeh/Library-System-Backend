@@ -21,4 +21,9 @@
     <ProjectReference Include="..\LibrarySystem.Core\LibrarySystem.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repository\" />
+    <Folder Include="Service\" />
+  </ItemGroup>
+
 </Project>
