@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LibrarySystem.API.Data
+namespace LibrarySystem.Core.Data
 {
     public partial class Category
     {
