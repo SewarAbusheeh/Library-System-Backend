@@ -9,9 +9,6 @@ namespace LibrarySystem.Core.Common
 {
     public interface IDbContext
     {
-        public interface IDbContext
-        {
-            DbConnection Connection { get; }
-        }
+        DbConnection Connection { get; }
     }
 }
