@@ -107,12 +107,12 @@ namespace LibrarySystem.Core.Data
 
             modelBuilder.Entity<Bank>(entity =>
             {
-                entity.HasKey(e => e.CardId)
+                entity.HasKey(e => e.Card_Id)
                     .HasName("PK_BANK_CARD_ID");
 
                 entity.ToTable("BANK");
 
-                entity.Property(e => e.CardId)
+                entity.Property(e => e.Card_Id)
                     .HasColumnType("NUMBER(38)")
                     .ValueGeneratedOnAdd()
                     .HasColumnName("CARD_ID");
@@ -121,11 +121,11 @@ namespace LibrarySystem.Core.Data
                     .HasColumnType("FLOAT")
                     .HasColumnName("BALANCE");
 
-                entity.Property(e => e.CardNo)
+                entity.Property(e => e.Card_No)
                     .HasColumnType("NUMBER(38)")
                     .HasColumnName("CARD_NO");
 
-                entity.Property(e => e.CardholderName)
+                entity.Property(e => e.Cardholder_Name)
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("CARDHOLDER_NAME");

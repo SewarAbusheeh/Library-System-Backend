@@ -44,6 +44,15 @@ builder.Services.AddAuthentication(opt =>
 
 builder.Services.AddScoped<IJWTRepository, JWTRepository>();
 builder.Services.AddScoped<IJWTService, JWTService>();
+//bank
+builder.Services.AddScoped<IBankRepository, BankRepository>();
+builder.Services.AddScoped<IBankService, BankService>();
+//Contactus
+builder.Services.AddScoped<IContactusRepository, ContactusRepository>();
+builder.Services.AddScoped<IContactusService, ContactusService>();
+//testimonialpage 
+builder.Services.AddScoped<ITestimonialPageRepository, TestimonialPageRepository>();
+builder.Services.AddScoped<ITestimonialPageService, TestimonialPageService>();
 
 var app = builder.Build();
 
