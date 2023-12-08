@@ -108,7 +108,7 @@ namespace LibrarySystem.Core.Data
             modelBuilder.Entity<Bank>(entity =>
             {
                 entity.HasKey(e => e.CardId)
-                    .HasName("SYS_C009305");
+                    .HasName("PK_BANK_CARD_ID");
 
                 entity.ToTable("BANK");
 
@@ -118,7 +118,7 @@ namespace LibrarySystem.Core.Data
                     .HasColumnName("CARD_ID");
 
                 entity.Property(e => e.Balance)
-                    .HasColumnType("NUMBER(12,2)")
+                    .HasColumnType("FLOAT")
                     .HasColumnName("BALANCE");
 
                 entity.Property(e => e.CardNo)
@@ -151,7 +151,7 @@ namespace LibrarySystem.Core.Data
                     .HasColumnName("AUTHOR");
 
                 entity.Property(e => e.AvgRating)
-                    .IsUnicode(false)
+                    .HasColumnType("FLOAT")
                     .HasColumnName("AVG_RATING");
 
                 entity.Property(e => e.BookImgPath)
@@ -171,12 +171,11 @@ namespace LibrarySystem.Core.Data
                     .HasColumnName("DESCRIPTION");
 
                 entity.Property(e => e.PricePerDay)
-                    .HasMaxLength(2000)
-                    .IsUnicode(false)
+                    .HasColumnType("FLOAT")
                     .HasColumnName("PRICE_PER_DAY");
 
                 entity.Property(e => e.PublicationDate)
-                    .IsUnicode(false)
+                    .HasColumnType("DATE")
                     .HasColumnName("PUBLICATION_DATE");
 
                 entity.Property(e => e.Title)
@@ -187,8 +186,7 @@ namespace LibrarySystem.Core.Data
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Books)
                     .HasForeignKey(d => d.CategoryId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("SYS_C009294");
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<BookReview>(entity =>
@@ -209,8 +207,7 @@ namespace LibrarySystem.Core.Data
                     .HasColumnName("BORROW_ID");
 
                 entity.Property(e => e.Rating)
-                    .HasMaxLength(400)
-                    .IsUnicode(false)
+                    .HasColumnType("FLOAT")
                     .HasColumnName("RATING");
 
                 entity.Property(e => e.ReviewDate)
@@ -228,24 +225,21 @@ namespace LibrarySystem.Core.Data
                 entity.HasOne(d => d.Book)
                     .WithMany(p => p.BookReviews)
                     .HasForeignKey(d => d.BookId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("SYS_C009302");
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(d => d.Borrow)
                     .WithMany(p => p.BookReviews)
-                    .HasForeignKey(d => d.BorrowId)
-                    .HasConstraintName("SYS_C009303");
+                    .HasForeignKey(d => d.BorrowId);
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.BookReviews)
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("SYS_C009301");
+                    .HasForeignKey(d => d.UserId);
             });
 
             modelBuilder.Entity<Borrowedbook>(entity =>
             {
                 entity.HasKey(e => e.BorrowId)
-                    .HasName("SYS_C009296");
+                    .HasName("PK_BORROWEDBOOKS_BORROW_ID");
 
                 entity.ToTable("BORROWEDBOOKS");
 
@@ -286,14 +280,12 @@ namespace LibrarySystem.Core.Data
                 entity.HasOne(d => d.Book)
                     .WithMany(p => p.Borrowedbooks)
                     .HasForeignKey(d => d.BookId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("SYS_C009298");
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Borrowedbooks)
                     .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("SYS_C009297");
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Category>(entity =>
@@ -317,14 +309,13 @@ namespace LibrarySystem.Core.Data
                 entity.HasOne(d => d.Library)
                     .WithMany(p => p.Categories)
                     .HasForeignKey(d => d.LibraryId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("SYS_C009291");
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Contactu>(entity =>
             {
                 entity.HasKey(e => e.ContactusId)
-                    .HasName("SYS_C009310");
+                    .HasName("PK_CONTACTUS_CONTACTUS_ID");
 
                 entity.ToTable("CONTACTUS");
 
@@ -570,14 +561,12 @@ namespace LibrarySystem.Core.Data
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.Logins)
                     .HasForeignKey(d => d.RoleId)
-                    .OnDelete(DeleteBehavior.SetNull)
-                    .HasConstraintName("SYS_C009286");
+                    .OnDelete(DeleteBehavior.SetNull);
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Logins)
                     .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("SYS_C009285");
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Role>(entity =>
@@ -598,7 +587,7 @@ namespace LibrarySystem.Core.Data
             modelBuilder.Entity<Testimonial>(entity =>
             {
                 entity.HasKey(e => e.TestimonialsId)
-                    .HasName("SYS_C009307");
+                    .HasName("PK_TESTIMONIALS_TESTIMONIALS_ID");
 
                 entity.ToTable("TESTIMONIALS");
 
@@ -627,8 +616,7 @@ namespace LibrarySystem.Core.Data
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Testimonials)
                     .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("SYS_C009308");
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Testimonialpage>(entity =>

@@ -9,7 +9,7 @@ namespace LibrarySystem.Core.Data
         public decimal? UserId { get; set; }
         public decimal? BookId { get; set; }
         public decimal? BorrowId { get; set; }
-        public string? Rating { get; set; }
+        public decimal? Rating { get; set; }
         public string? ReviewText { get; set; }
         public DateTime? ReviewDate { get; set; }
 

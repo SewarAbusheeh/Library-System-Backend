@@ -1,5 +1,12 @@
 using LibrarySystem.Core.Common;
+using LibrarySystem.Core.Repository;
+using LibrarySystem.Core.Service;
 using LibrarySystem.Infra.Common;
+using LibrarySystem.Infra.Repository;
+using LibrarySystem.Infra.Service;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +18,32 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IDbContext, DbContext>();
+
+builder.Services.AddScoped<IBookReviewRepository, BookReviewRepository>();
+builder.Services.AddScoped<IBookReviewService, BookReviewService>();
+
+builder.Services.AddScoped<IBorrowedBookRepository, BorrowedBookRepository>();
+builder.Services.AddScoped<IBorrowedBookService, BorrowedBookService>();
+
+builder.Services.AddAuthentication(opt =>
+{
+    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
+    };
+});
+
+builder.Services.AddScoped<IJWTRepository, JWTRepository>();
+builder.Services.AddScoped<IJWTService, JWTService>();
 
 var app = builder.Build();
 
@@ -24,6 +57,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllers();
 

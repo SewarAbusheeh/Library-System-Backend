@@ -17,9 +17,9 @@ namespace LibrarySystem.Core.Data
         public string? Description { get; set; }
         public string? BookImgPath { get; set; }
         public string? BookPdfPath { get; set; }
-        public string? PublicationDate { get; set; }
-        public string? PricePerDay { get; set; }
-        public string? AvgRating { get; set; }
+        public DateTime? PublicationDate { get; set; }
+        public decimal? PricePerDay { get; set; }
+        public decimal? AvgRating { get; set; }
         public decimal? CategoryId { get; set; }
 
         public virtual Category? Category { get; set; }
