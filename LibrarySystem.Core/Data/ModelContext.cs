@@ -337,7 +337,7 @@ namespace LibrarySystem.Core.Data
                     .IsUnicode(false)
                     .HasColumnName("MESSAGE");
 
-                entity.Property(e => e.Phone_Number)
+                entity.Property(e => e.PhoneNumber)
                     .IsUnicode(false)
                     .HasColumnName("PHONE_NUMBER");
 
@@ -628,36 +628,36 @@ namespace LibrarySystem.Core.Data
                     .ValueGeneratedOnAdd()
                     .HasColumnName("TESTIMONIALPAGE_ID");
 
-                entity.Property(e => e.Footer_Component1)
+                entity.Property(e => e.FooterComponent1)
                     .IsUnicode(false)
                     .HasColumnName("FOOTER_COMPONENT1");
 
-                entity.Property(e => e.Footer_Component2)
+                entity.Property(e => e.FooterComponent2)
                     .IsUnicode(false)
                     .HasColumnName("FOOTER_COMPONENT2");
 
-                entity.Property(e => e.Footer_Component3)
+                entity.Property(e => e.FooterComponent3)
                     .IsUnicode(false)
                     .HasColumnName("FOOTER_COMPONENT3");
 
-                entity.Property(e => e.Header_Component1)
+                entity.Property(e => e.HeaderComponent1)
                     .IsUnicode(false)
                     .HasColumnName("HEADER_COMPONENT1");
 
-                entity.Property(e => e.Header_Component2)
+                entity.Property(e => e.HeaderComponent2)
                     .IsUnicode(false)
                     .HasColumnName("HEADER_COMPONENT2");
 
-                entity.Property(e => e.Header_Component3)
+                entity.Property(e => e.HeaderComponent3)
                     .IsUnicode(false)
                     .HasColumnName("HEADER_COMPONENT3");
 
-                entity.Property(e => e.Image_Path1)
+                entity.Property(e => e.ImagePath1)
                     .HasMaxLength(1000)
                     .IsUnicode(false)
                     .HasColumnName("IMAGE_PATH1");
 
-                entity.Property(e => e.Image_Path2)
+                entity.Property(e => e.ImagePath2)
                     .HasMaxLength(1000)
                     .IsUnicode(false)
                     .HasColumnName("IMAGE_PATH2");

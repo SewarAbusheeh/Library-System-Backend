@@ -43,7 +43,7 @@ namespace LibrarySystem.Infra.Repository
             p.Add("p_cardNo", bank.Card_No, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("p_cardholderName", bank.Cardholder_Name, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_balance", bank.Balance, dbType: DbType.Double, direction: ParameterDirection.Input);
-            p.Add("p_cvv", bank.Cvv, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_cvv", bank.Cvv, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
             var result = dbContext.Connection.Execute("BANK_PACKAGE.CreateBankCard", p, commandType: CommandType.StoredProcedure);
         }
@@ -55,7 +55,7 @@ namespace LibrarySystem.Infra.Repository
             p.Add("p_cardNo", bank.Card_No, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("p_cardholderName", bank.Cardholder_Name, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_balance", bank.Balance, dbType: DbType.Double, direction: ParameterDirection.Input);
-            p.Add("p_cvv", bank.Cvv, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_cvv", bank.Cvv, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = dbContext.Connection.Execute("BANK_PACKAGE.UpdateBankCard", p, commandType: CommandType.StoredProcedure);
         }
 
