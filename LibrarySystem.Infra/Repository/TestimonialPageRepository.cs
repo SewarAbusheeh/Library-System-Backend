@@ -21,7 +21,7 @@ namespace LibrarySystem.Infra.Repository
         }
         public List<Testimonialpage> GetAllTestimonialPageData()
         {
-            IEnumerable<Testimonialpage> result = dbContext.Connection.Query<Testimonialpage>("TESTIMONIALPAGE_PACKAGE.GetAllTestimonials", commandType: CommandType.StoredProcedure);
+            IEnumerable<Testimonialpage> result = dbContext.Connection.Query<Testimonialpage>("TESTIMONIALPAGE_PACKAGE.GetAllTestimonialPageEntries", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
         
@@ -29,7 +29,7 @@ namespace LibrarySystem.Infra.Repository
         {
             var p = new DynamicParameters();
             p.Add("p_testimonialPageId", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = dbContext.Connection.Query<Testimonialpage>("TESTIMONIALPAGE_PACKAGE.GetTestimonialById", p, commandType: CommandType.StoredProcedure);
+            var result = dbContext.Connection.Query<Testimonialpage>("TESTIMONIALPAGE_PACKAGE.GetTestimonialPageEntryById", p, commandType: CommandType.StoredProcedure);
 
             return result.FirstOrDefault();
         }
@@ -37,45 +37,45 @@ namespace LibrarySystem.Infra.Repository
         {
             var p = new DynamicParameters();
             p.Add("p_title", testimonialpage.Title, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("p_headerComponent1", testimonialpage.HeaderComponent1, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("p_headerComponent2", testimonialpage.HeaderComponent2, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("p_headerComponent3", testimonialpage.HeaderComponent3, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_headerComponent1", testimonialpage.Header_Component1, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_headerComponent2", testimonialpage.Header_Component2, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_headerComponent3", testimonialpage.Header_Component3, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_paragraph1", testimonialpage.Paragraph1, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_paragraph2", testimonialpage.Paragraph2, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_paragraph3", testimonialpage.Paragraph3, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("p_footerComponent1", testimonialpage.FooterComponent1, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("p_footerComponent2", testimonialpage.FooterComponent2, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("p_footerComponent3", testimonialpage.FooterComponent3, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("p_imagePath1", testimonialpage.ImagePath1, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("p_imagePath2", testimonialpage.ImagePath2, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_footerComponent1", testimonialpage.Footer_Component1, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_footerComponent2", testimonialpage.Footer_Component2, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_footerComponent3", testimonialpage.Footer_Component3, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_imagePath1", testimonialpage.Image_Path1, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_imagePath2", testimonialpage.Image_Path2, dbType: DbType.String, direction: ParameterDirection.Input);
 
-            var result = dbContext.Connection.Execute("TESTIMONIALPAGE_PACKAGE.CreateTestimonial", p, commandType: CommandType.StoredProcedure);
+            var result = dbContext.Connection.Execute("TESTIMONIALPAGE_PACKAGE.CreateTestimonialPageEntry", p, commandType: CommandType.StoredProcedure);
         }
         public void UpdateTestimonialPageData(Testimonialpage testimonialpage)
         {
             var p = new DynamicParameters();
             p.Add("p_testimonialPageId", testimonialpage.TestimonialpageId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("p_title", testimonialpage.Title, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("p_headerComponent1", testimonialpage.HeaderComponent1, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("p_headerComponent2", testimonialpage.HeaderComponent2, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("p_headerComponent3", testimonialpage.HeaderComponent3, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_headerComponent1", testimonialpage.Header_Component1, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_headerComponent2", testimonialpage.Header_Component2, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_headerComponent3", testimonialpage.Header_Component3, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_paragraph1", testimonialpage.Paragraph1, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_paragraph2", testimonialpage.Paragraph2, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_paragraph3", testimonialpage.Paragraph3, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("p_footerComponent1", testimonialpage.FooterComponent1, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("p_footerComponent2", testimonialpage.FooterComponent2, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("p_footerComponent3", testimonialpage.FooterComponent3, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("p_imagePath1", testimonialpage.ImagePath1, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("p_imagePath2", testimonialpage.ImagePath2, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_footerComponent1", testimonialpage.Footer_Component1, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_footerComponent2", testimonialpage.Footer_Component2, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_footerComponent3", testimonialpage.Footer_Component3, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_imagePath1", testimonialpage.Image_Path1, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_imagePath2", testimonialpage.Image_Path2, dbType: DbType.String, direction: ParameterDirection.Input);
 
-            var result = dbContext.Connection.Execute("TESTIMONIALPAGE_PACKAGE.UpdateTestimonial", p, commandType: CommandType.StoredProcedure);
+            var result = dbContext.Connection.Execute("TESTIMONIALPAGE_PACKAGE.UpdateTestimonialPageEntry", p, commandType: CommandType.StoredProcedure);
         }
 
         public void DeleteTestimonialPageData(int id)
         {
             var p = new DynamicParameters();
             p.Add("p_testimonialPageId", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            var result = dbContext.Connection.Query<Contactu>("TESTIMONIALPAGE_PACKAGE.DeleteTestimonial", p, commandType: CommandType.StoredProcedure);
+            var result = dbContext.Connection.Query<Contactu>("TESTIMONIALPAGE_PACKAGE.DeleteTestimonialPageEntry", p, commandType: CommandType.StoredProcedure);
         }
     }
 }

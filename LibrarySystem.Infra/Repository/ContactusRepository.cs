@@ -23,7 +23,7 @@ namespace LibrarySystem.Infra.Repository
         }
         public List<Contactu> GetAllContactUsRequests()
         {
-            IEnumerable<Contactu> result = dbContext.Connection.Query<Contactu>("CONTACTUS_PACKAGE.GetAllContactUsEntrie", commandType: CommandType.StoredProcedure);
+            IEnumerable<Contactu> result = dbContext.Connection.Query<Contactu>("CONTACTUS_PACKAGE.GetAllContactUsEntries", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 
@@ -40,7 +40,7 @@ namespace LibrarySystem.Infra.Repository
             var p = new DynamicParameters();
             p.Add("p_fullName", contactus.Fullname, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_email", contactus.Email, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("p_phoneNumber", contactus.PhoneNumber, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_phoneNumber", contactus.Phone_Number, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_subject", contactus.Subject, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_message", contactus.Message, dbType: DbType.String, direction: ParameterDirection.Input);
 
@@ -52,7 +52,7 @@ namespace LibrarySystem.Infra.Repository
             p.Add("p_contactUsId", contactus.ContactusId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("p_fullName", contactus.Fullname, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_email", contactus.Email, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("p_phoneNumber", contactus.PhoneNumber, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("p_phoneNumber", contactus.Phone_Number, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_subject", contactus.Subject, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_message", contactus.Message, dbType: DbType.String, direction: ParameterDirection.Input);
             var result = dbContext.Connection.Execute("CONTACTUS_PACKAGE.UpdateContactUsEntry", p, commandType: CommandType.StoredProcedure);
