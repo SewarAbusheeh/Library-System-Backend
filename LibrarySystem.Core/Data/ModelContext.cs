@@ -140,7 +140,7 @@ namespace LibrarySystem.Core.Data
             {
                 entity.ToTable("BOOKS");
 
-                entity.Property(e => e.BookId)
+                entity.Property(e => e.Book_Id)
                     .HasColumnType("NUMBER(38)")
                     .ValueGeneratedOnAdd()
                     .HasColumnName("BOOK_ID");
@@ -150,19 +150,19 @@ namespace LibrarySystem.Core.Data
                     .IsUnicode(false)
                     .HasColumnName("AUTHOR");
 
-                entity.Property(e => e.AvgRating)
+                entity.Property(e => e.Avg_Rating)
                     .HasColumnType("FLOAT")
                     .HasColumnName("AVG_RATING");
 
-                entity.Property(e => e.BookImgPath)
+                entity.Property(e => e.Book_Img_Path)
                     .IsUnicode(false)
                     .HasColumnName("BOOK_IMG_PATH");
 
-                entity.Property(e => e.BookPdfPath)
+                entity.Property(e => e.Book_Pdf_Path)
                     .IsUnicode(false)
                     .HasColumnName("BOOK_PDF_PATH");
 
-                entity.Property(e => e.CategoryId)
+                entity.Property(e => e.Category_Id)
                     .HasColumnType("NUMBER(38)")
                     .HasColumnName("CATEGORY_ID");
 
@@ -170,11 +170,11 @@ namespace LibrarySystem.Core.Data
                     .IsUnicode(false)
                     .HasColumnName("DESCRIPTION");
 
-                entity.Property(e => e.PricePerDay)
+                entity.Property(e => e.Price_Per_Day)
                     .HasColumnType("FLOAT")
                     .HasColumnName("PRICE_PER_DAY");
 
-                entity.Property(e => e.PublicationDate)
+                entity.Property(e => e.Publication_Date)
                     .HasColumnType("DATE")
                     .HasColumnName("PUBLICATION_DATE");
 
@@ -185,7 +185,7 @@ namespace LibrarySystem.Core.Data
 
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Books)
-                    .HasForeignKey(d => d.CategoryId)
+                    .HasForeignKey(d => d.Category_Id)
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
@@ -292,23 +292,23 @@ namespace LibrarySystem.Core.Data
             {
                 entity.ToTable("CATEGORY");
 
-                entity.Property(e => e.CategoryId)
+                entity.Property(e => e.Category_Id)
                     .HasColumnType("NUMBER(38)")
                     .ValueGeneratedOnAdd()
                     .HasColumnName("CATEGORY_ID");
 
-                entity.Property(e => e.CategoryName)
+                entity.Property(e => e.Category_Name)
                     .HasMaxLength(500)
                     .IsUnicode(false)
                     .HasColumnName("CATEGORY_NAME");
 
-                entity.Property(e => e.LibraryId)
+                entity.Property(e => e.Library_Id)
                     .HasColumnType("NUMBER(38)")
                     .HasColumnName("LIBRARY_ID");
 
                 entity.HasOne(d => d.Library)
                     .WithMany(p => p.Categories)
-                    .HasForeignKey(d => d.LibraryId)
+                    .HasForeignKey(d => d.Library_Id)
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
@@ -488,7 +488,7 @@ namespace LibrarySystem.Core.Data
             {
                 entity.ToTable("LIBRARIES");
 
-                entity.Property(e => e.LibraryId)
+                entity.Property(e => e.Library_Id)
                     .HasColumnType("NUMBER(38)")
                     .ValueGeneratedOnAdd()
                     .HasColumnName("LIBRARY_ID");
@@ -502,20 +502,20 @@ namespace LibrarySystem.Core.Data
                     .IsUnicode(false)
                     .HasColumnName("EMAIL");
 
-                entity.Property(e => e.ImagePath1)
+                entity.Property(e => e.Image_Path1)
                     .IsUnicode(false)
                     .HasColumnName("IMAGE_PATH1");
 
-                entity.Property(e => e.ImagePath2)
+                entity.Property(e => e.Image_Path2)
                     .IsUnicode(false)
                     .HasColumnName("IMAGE_PATH2");
 
-                entity.Property(e => e.LocationLatitude)
+                entity.Property(e => e.Location_Latitude)
                     .HasMaxLength(1000)
                     .IsUnicode(false)
                     .HasColumnName("LOCATION_LATITUDE");
 
-                entity.Property(e => e.LocationLongitude)
+                entity.Property(e => e.Location_Longitude)
                     .HasMaxLength(1000)
                     .IsUnicode(false)
                     .HasColumnName("LOCATION_LONGITUDE");
@@ -525,7 +525,7 @@ namespace LibrarySystem.Core.Data
                     .IsUnicode(false)
                     .HasColumnName("NAME");
 
-                entity.Property(e => e.PhoneNumber)
+                entity.Property(e => e.Phone_Number)
                     .HasMaxLength(1000)
                     .IsUnicode(false)
                     .HasColumnName("PHONE_NUMBER");

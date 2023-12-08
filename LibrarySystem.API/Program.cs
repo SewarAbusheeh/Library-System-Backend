@@ -54,6 +54,15 @@ builder.Services.AddScoped<IContactusService, ContactusService>();
 builder.Services.AddScoped<ITestimonialPageRepository, TestimonialPageRepository>();
 builder.Services.AddScoped<ITestimonialPageService, TestimonialPageService>();
 
+builder.Services.AddScoped<ILibraryRepository, LibraryRepository>();
+builder.Services.AddScoped<ILibraryService, LibraryService>();
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IBookService, BookService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

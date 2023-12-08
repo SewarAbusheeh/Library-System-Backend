@@ -10,9 +10,9 @@ namespace LibrarySystem.Core.Data
             Books = new HashSet<Book>();
         }
 
-        public decimal CategoryId { get; set; }
-        public string? CategoryName { get; set; }
-        public decimal? LibraryId { get; set; }
+        public decimal Category_Id { get; set; }
+        public string? Category_Name { get; set; }
+        public decimal? Library_Id { get; set; }
 
         public virtual Library? Library { get; set; }
         public virtual ICollection<Book> Books { get; set; }
