@@ -27,7 +27,7 @@ namespace LibrarySystem.Infra.Repository
         public BookReview GetBookReviewById(int id)
         {
             var p = new DynamicParameters();
-            p.Add("bookReviewId", id);
+            p.Add("p_reviewId", id);
             var result = dbContext.Connection.Query<BookReview>("BookReview_Package.GetBookReviewById", p, commandType: CommandType.StoredProcedure);
             return result.FirstOrDefault();
         }
@@ -35,12 +35,12 @@ namespace LibrarySystem.Infra.Repository
         public void CreateBookReview(BookReview bookReview)
         {
             var p = new DynamicParameters();
-            p.Add("userId", bookReview.UserId);
-            p.Add("bookId", bookReview.BookId);
-            p.Add("borrowId", bookReview.BorrowId);
-            p.Add("rating", bookReview.Rating);
-            p.Add("reviewText", bookReview.ReviewText);
-            p.Add("reviewDate", bookReview.ReviewDate);
+            p.Add("p_userId", bookReview.User_Id);
+            p.Add("p_bookId", bookReview.Book_Id);
+            p.Add("p_borrowId", bookReview.Borrow_Id);
+            p.Add("p_rating", bookReview.Rating);
+            p.Add("p_reviewText", bookReview.Review_Text);
+            p.Add("p_reviewDate", bookReview.Review_Date);
 
             var result = dbContext.Connection.Execute("BookReview_Package.CreateBookReview", p, commandType: CommandType.StoredProcedure);
         }
@@ -48,13 +48,13 @@ namespace LibrarySystem.Infra.Repository
         public void UpdateBookReview(BookReview bookReview)
         {
             var p = new DynamicParameters();
-            p.Add("bookReviewId", bookReview.BookReviewId);
-            p.Add("userId", bookReview.UserId);
-            p.Add("bookId", bookReview.BookId);
-            p.Add("borrowId", bookReview.BorrowId);
-            p.Add("rating", bookReview.Rating);
-            p.Add("reviewText", bookReview.ReviewText);
-            p.Add("reviewDate", bookReview.ReviewDate);
+            p.Add("p_reviewId", bookReview.Book_Review_Id);
+            p.Add("p_userId", bookReview.User_Id);
+            p.Add("p_bookId", bookReview.Book_Id);
+            p.Add("p_borrowId", bookReview.Borrow_Id);
+            p.Add("p_rating", bookReview.Rating);
+            p.Add("p_reviewText", bookReview.Review_Text);
+            p.Add("p_reviewDate", bookReview.Review_Date);
 
             var result = dbContext.Connection.Execute("BookReview_Package.UpdateBookReview", p, commandType: CommandType.StoredProcedure);
         }
@@ -62,7 +62,7 @@ namespace LibrarySystem.Infra.Repository
         public void DeleteBookReview(int bookReviewId)
         {
             var p = new DynamicParameters();
-            p.Add("bookReviewId", bookReviewId);
+            p.Add("p_reviewId", bookReviewId);
 
             var result = dbContext.Connection.Execute("BookReview_Package.DeleteBookReview", p, commandType: CommandType.StoredProcedure);
         }
