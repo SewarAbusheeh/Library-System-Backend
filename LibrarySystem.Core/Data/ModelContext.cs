@@ -193,16 +193,16 @@ namespace LibrarySystem.Core.Data
             {
                 entity.ToTable("BOOK_REVIEW");
 
-                entity.Property(e => e.BookReviewId)
+                entity.Property(e => e.Book_Review_Id)
                     .HasColumnType("NUMBER(38)")
                     .ValueGeneratedOnAdd()
                     .HasColumnName("BOOK_REVIEW_ID");
 
-                entity.Property(e => e.BookId)
+                entity.Property(e => e.Book_Id)
                     .HasColumnType("NUMBER(38)")
                     .HasColumnName("BOOK_ID");
 
-                entity.Property(e => e.BorrowId)
+                entity.Property(e => e.Borrow_Id)
                     .HasColumnType("NUMBER(38)")
                     .HasColumnName("BORROW_ID");
 
@@ -210,81 +210,81 @@ namespace LibrarySystem.Core.Data
                     .HasColumnType("FLOAT")
                     .HasColumnName("RATING");
 
-                entity.Property(e => e.ReviewDate)
+                entity.Property(e => e.Review_Date)
                     .HasColumnType("DATE")
                     .HasColumnName("REVIEW_DATE");
 
-                entity.Property(e => e.ReviewText)
+                entity.Property(e => e.Review_Text)
                     .IsUnicode(false)
                     .HasColumnName("REVIEW_TEXT");
 
-                entity.Property(e => e.UserId)
+                entity.Property(e => e.User_Id)
                     .HasColumnType("NUMBER(38)")
                     .HasColumnName("USER_ID");
 
                 entity.HasOne(d => d.Book)
                     .WithMany(p => p.BookReviews)
-                    .HasForeignKey(d => d.BookId)
+                    .HasForeignKey(d => d.Book_Id)
                     .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(d => d.Borrow)
                     .WithMany(p => p.BookReviews)
-                    .HasForeignKey(d => d.BorrowId);
+                    .HasForeignKey(d => d.Borrow_Id);
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.BookReviews)
-                    .HasForeignKey(d => d.UserId);
+                    .HasForeignKey(d => d.User_Id);
             });
 
             modelBuilder.Entity<Borrowedbook>(entity =>
             {
-                entity.HasKey(e => e.BorrowId)
+                entity.HasKey(e => e.Borrow_Id)
                     .HasName("PK_BORROWEDBOOKS_BORROW_ID");
 
                 entity.ToTable("BORROWEDBOOKS");
 
-                entity.Property(e => e.BorrowId)
+                entity.Property(e => e.Borrow_Id)
                     .HasColumnType("NUMBER(38)")
                     .ValueGeneratedOnAdd()
                     .HasColumnName("BORROW_ID");
 
-                entity.Property(e => e.BookId)
+                entity.Property(e => e.Book_Id)
                     .HasColumnType("NUMBER(38)")
                     .HasColumnName("BOOK_ID");
 
-                entity.Property(e => e.BorrowDateFrom)
+                entity.Property(e => e.Borrow_Date_From)
                     .HasColumnType("DATE")
                     .HasColumnName("BORROW_DATE_FROM");
 
-                entity.Property(e => e.BorrowDateTo)
+                entity.Property(e => e.Borrow_Date_To)
                     .HasColumnType("DATE")
                     .HasColumnName("BORROW_DATE_TO");
 
-                entity.Property(e => e.FinePercentage)
+                entity.Property(e => e.Fine_Percentage)
                     .HasColumnType("FLOAT")
                     .HasColumnName("FINE_PERCENTAGE");
 
-                entity.Property(e => e.IsfinePaid)
+                entity.Property(e => e.Isfine_Paid)
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("ISFINE_PAID");
 
-                entity.Property(e => e.ReturnedDate)
+                entity.Property(e => e.Returned_Date)
                     .HasColumnType("DATE")
                     .HasColumnName("RETURNED_DATE");
 
-                entity.Property(e => e.UserId)
+                entity.Property(e => e.User_Id)
                     .HasColumnType("NUMBER(38)")
                     .HasColumnName("USER_ID");
 
                 entity.HasOne(d => d.Book)
                     .WithMany(p => p.Borrowedbooks)
-                    .HasForeignKey(d => d.BookId)
+                    .HasForeignKey(d => d.Book_Id)
                     .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Borrowedbooks)
-                    .HasForeignKey(d => d.UserId)
+                    .HasForeignKey(d => d.User_Id)
                     .OnDelete(DeleteBehavior.Cascade);
             });
 

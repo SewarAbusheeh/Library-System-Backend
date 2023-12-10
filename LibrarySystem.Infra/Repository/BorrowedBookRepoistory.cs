@@ -27,7 +27,7 @@ namespace LibrarySystem.Infra.Repository
         public Borrowedbook GetBorrowedBookById(int borrowId)
         {
             var p = new DynamicParameters();
-            p.Add("borrowId", borrowId);
+            p.Add("p_borrowId", borrowId);
             var result = dbContext.Connection.Query<Borrowedbook>("BorrowedBooks_Package.GetBorrowedBookById", p, commandType: CommandType.StoredProcedure);
             return result.FirstOrDefault();
         }
@@ -35,13 +35,13 @@ namespace LibrarySystem.Infra.Repository
         public void CreateBorrowedBook(Borrowedbook borrowedBook)
         {
             var p = new DynamicParameters();
-            p.Add("userId", borrowedBook.UserId);
-            p.Add("bookId", borrowedBook.BookId);
-            p.Add("borrowDateFrom", borrowedBook.BorrowDateFrom);
-            p.Add("borrowDateTo", borrowedBook.BorrowDateTo);
-            p.Add("returnedDate", borrowedBook.ReturnedDate);
-            p.Add("finePercentage", borrowedBook.FinePercentage);
-            p.Add("isFinePaid", borrowedBook.IsfinePaid);
+            p.Add("p_userId", borrowedBook.User_Id);
+            p.Add("p_bookId", borrowedBook.Book_Id);
+            p.Add("p_borrowDateFrom", borrowedBook.Borrow_Date_From);
+            p.Add("p_borrowDateTo", borrowedBook.Borrow_Date_To);
+            p.Add("p_returnedDate", borrowedBook.Returned_Date);
+            p.Add("p_finePercentage", borrowedBook.Fine_Percentage);
+            p.Add("p_isFinePaid", borrowedBook.Isfine_Paid);
 
             dbContext.Connection.Execute("BorrowedBooks_Package.CreateBorrowedBook", p, commandType: CommandType.StoredProcedure);
         }
@@ -49,14 +49,14 @@ namespace LibrarySystem.Infra.Repository
         public void UpdateBorrowedBook(Borrowedbook borrowedBook)
         {
             var p = new DynamicParameters();
-            p.Add("borrowId", borrowedBook.BorrowId);
-            p.Add("userId", borrowedBook.UserId);
-            p.Add("bookId", borrowedBook.BookId);
-            p.Add("borrowDateFrom", borrowedBook.BorrowDateFrom);
-            p.Add("borrowDateTo", borrowedBook.BorrowDateTo);
-            p.Add("returnedDate", borrowedBook.ReturnedDate);
-            p.Add("finePercentage", borrowedBook.FinePercentage);
-            p.Add("isFinePaid", borrowedBook.IsfinePaid);
+            p.Add("p_borrowId", borrowedBook.Borrow_Id);
+            p.Add("p_userId", borrowedBook.User_Id);
+            p.Add("p_bookId", borrowedBook.Book_Id);
+            p.Add("p_borrowDateFrom", borrowedBook.Borrow_Date_From);
+            p.Add("p_borrowDateTo", borrowedBook.Borrow_Date_To);
+            p.Add("p_returnedDate", borrowedBook.Returned_Date);
+            p.Add("p_finePercentage", borrowedBook.Fine_Percentage);
+            p.Add("p_isFinePaid", borrowedBook.Isfine_Paid);
 
             dbContext.Connection.Execute("BorrowedBooks_Package.UpdateBorrowedBook", p, commandType: CommandType.StoredProcedure);
         }
@@ -64,7 +64,7 @@ namespace LibrarySystem.Infra.Repository
         public void DeleteBorrowedBook(int borrowId)
         {
             var p = new DynamicParameters();
-            p.Add("borrowId", borrowId);
+            p.Add("p_borrowId", borrowId);
 
             dbContext.Connection.Execute("BorrowedBooks_Package.DeleteBorrowedBook", p, commandType: CommandType.StoredProcedure);
         }
