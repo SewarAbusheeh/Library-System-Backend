@@ -50,44 +50,44 @@ namespace LibrarySystem.Core.Data
             {
                 entity.ToTable("ABOUTUSPAGE");
 
-                entity.Property(e => e.AboutuspageId)
+                entity.Property(e => e.ABOUTUSPAGE_ID)
                     .HasColumnType("NUMBER(38)")
                     .ValueGeneratedOnAdd()
                     .HasColumnName("ABOUTUSPAGE_ID");
 
-                entity.Property(e => e.FooterComponent1)
+                entity.Property(e => e.FOOTER_COMPONENT1)
                     .IsUnicode(false)
                     .HasColumnName("FOOTER_COMPONENT1");
 
-                entity.Property(e => e.FooterComponent2)
+                entity.Property(e => e.FOOTER_COMPONENT2)
                     .IsUnicode(false)
                     .HasColumnName("FOOTER_COMPONENT2");
 
-                entity.Property(e => e.FooterComponent3)
+                entity.Property(e => e.FOOTER_COMPONENT3)
                     .IsUnicode(false)
                     .HasColumnName("FOOTER_COMPONENT3");
 
-                entity.Property(e => e.HeaderComponent1)
+                entity.Property(e => e.HEADER_COMPONENT1)
                     .IsUnicode(false)
                     .HasColumnName("HEADER_COMPONENT1");
 
-                entity.Property(e => e.HeaderComponent2)
+                entity.Property(e => e.HEADER_COMPONENT2)
                     .IsUnicode(false)
                     .HasColumnName("HEADER_COMPONENT2");
 
-                entity.Property(e => e.HeaderComponent3)
+                entity.Property(e => e.HEADER_COMPONENT3)
                     .IsUnicode(false)
                     .HasColumnName("HEADER_COMPONENT3");
 
-                entity.Property(e => e.ImagePath1)
+                entity.Property(e => e.IMAGE_PATH1)
                     .IsUnicode(false)
                     .HasColumnName("IMAGE_PATH1");
 
-                entity.Property(e => e.ImagePath2)
+                entity.Property(e => e.IMAGE_PATH2)
                     .IsUnicode(false)
                     .HasColumnName("IMAGE_PATH2");
 
-                entity.Property(e => e.LogoPath)
+                entity.Property(e => e.LOGO_PATH)
                     .HasMaxLength(3000)
                     .IsUnicode(false)
                     .HasColumnName("LOGO_PATH");
@@ -350,7 +350,7 @@ namespace LibrarySystem.Core.Data
             {
                 entity.ToTable("CONTACTUSPAGE");
 
-                entity.Property(e => e.ContactuspageId)
+                entity.Property(e => e.CONTACTUSPAGE_ID)
                     .HasColumnType("NUMBER(38)")
                     .ValueGeneratedOnAdd()
                     .HasColumnName("CONTACTUSPAGE_ID");
@@ -360,31 +360,31 @@ namespace LibrarySystem.Core.Data
                     .IsUnicode(false)
                     .HasColumnName("EMAIL");
 
-                entity.Property(e => e.FooterComponent1)
+                entity.Property(e => e.FOOTER_COMPONENT1)
                     .IsUnicode(false)
                     .HasColumnName("FOOTER_COMPONENT1");
 
-                entity.Property(e => e.FooterComponent2)
+                entity.Property(e => e.FOOTER_COMPONENT2)
                     .IsUnicode(false)
                     .HasColumnName("FOOTER_COMPONENT2");
 
-                entity.Property(e => e.FooterComponent3)
+                entity.Property(e => e.FOOTER_COMPONENT3)
                     .IsUnicode(false)
                     .HasColumnName("FOOTER_COMPONENT3");
 
-                entity.Property(e => e.HeaderComponent1)
+                entity.Property(e => e.HEADER_COMPONENT1)
                     .IsUnicode(false)
                     .HasColumnName("HEADER_COMPONENT1");
 
-                entity.Property(e => e.HeaderComponent2)
+                entity.Property(e => e.HEADER_COMPONENT2)
                     .IsUnicode(false)
                     .HasColumnName("HEADER_COMPONENT2");
 
-                entity.Property(e => e.HeaderComponent3)
+                entity.Property(e => e.HEADER_COMPONENT3)
                     .IsUnicode(false)
                     .HasColumnName("HEADER_COMPONENT3");
 
-                entity.Property(e => e.LogoPath)
+                entity.Property(e => e.LOGO_PATH)
                     .HasMaxLength(2000)
                     .IsUnicode(false)
                     .HasColumnName("LOGO_PATH");
@@ -419,46 +419,46 @@ namespace LibrarySystem.Core.Data
             {
                 entity.ToTable("HOMEPAGE");
 
-                entity.Property(e => e.HomepageId)
+                entity.Property(e => e.HOMEPAGE_ID)
                     .HasColumnType("NUMBER(38)")
                     .ValueGeneratedOnAdd()
                     .HasColumnName("HOMEPAGE_ID");
 
-                entity.Property(e => e.FooterComponent1)
+                entity.Property(e => e.FOOTER_COMPONENT1)
                     .IsUnicode(false)
                     .HasColumnName("FOOTER_COMPONENT1");
 
-                entity.Property(e => e.FooterComponent2)
+                entity.Property(e => e.FOOTER_COMPONENT2)
                     .IsUnicode(false)
                     .HasColumnName("FOOTER_COMPONENT2");
 
-                entity.Property(e => e.FooterComponent3)
+                entity.Property(e => e.FOOTER_COMPONENT3)
                     .IsUnicode(false)
                     .HasColumnName("FOOTER_COMPONENT3");
 
-                entity.Property(e => e.HeaderComponent1)
+                entity.Property(e => e.FOOTER_COMPONENT1)
                     .IsUnicode(false)
                     .HasColumnName("HEADER_COMPONENT1");
 
-                entity.Property(e => e.HeaderComponent2)
+                entity.Property(e => e.FOOTER_COMPONENT2)
                     .IsUnicode(false)
                     .HasColumnName("HEADER_COMPONENT2");
 
-                entity.Property(e => e.HeaderComponent3)
+                entity.Property(e => e.FOOTER_COMPONENT3)
                     .IsUnicode(false)
                     .HasColumnName("HEADER_COMPONENT3");
 
-                entity.Property(e => e.ImagePath1)
+                entity.Property(e => e.IMAGE_PATH1)
                     .HasMaxLength(1000)
                     .IsUnicode(false)
                     .HasColumnName("IMAGE_PATH1");
 
-                entity.Property(e => e.ImagePath2)
+                entity.Property(e => e.IMAGE_PATH2)
                     .HasMaxLength(1000)
                     .IsUnicode(false)
                     .HasColumnName("IMAGE_PATH2");
 
-                entity.Property(e => e.LogoPath)
+                entity.Property(e => e.LOGO_PATH)
                     .HasMaxLength(2000)
                     .IsUnicode(false)
                     .HasColumnName("LOGO_PATH");
@@ -478,7 +478,7 @@ namespace LibrarySystem.Core.Data
                     .IsUnicode(false)
                     .HasColumnName("PARAGRAPH3");
 
-                entity.Property(e => e.Title)
+                entity.Property(e => e.TITLE)
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("TITLE");

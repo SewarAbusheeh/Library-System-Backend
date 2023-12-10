@@ -5,18 +5,18 @@ namespace LibrarySystem.Core.Data
 {
     public partial class Aboutuspage
     {
-        public decimal AboutuspageId { get; set; }
-        public string? LogoPath { get; set; }
-        public string? HeaderComponent1 { get; set; }
-        public string? HeaderComponent2 { get; set; }
-        public string? HeaderComponent3 { get; set; }
+        public decimal ABOUTUSPAGE_ID { get; set; }
+        public string? LOGO_PATH { get; set; }
+        public string? HEADER_COMPONENT1 { get; set; }
+        public string? HEADER_COMPONENT2 { get; set; }
+        public string? HEADER_COMPONENT3 { get; set; }
         public string? Paragraph1 { get; set; }
         public string? Paragraph2 { get; set; }
         public string? Paragraph3 { get; set; }
-        public string? FooterComponent1 { get; set; }
-        public string? FooterComponent2 { get; set; }
-        public string? FooterComponent3 { get; set; }
-        public string? ImagePath1 { get; set; }
-        public string? ImagePath2 { get; set; }
+        public string? FOOTER_COMPONENT1 { get; set; }
+        public string? FOOTER_COMPONENT2 { get; set; }
+        public string? FOOTER_COMPONENT3 { get; set; }
+        public string? IMAGE_PATH1 { get; set; }
+        public string? IMAGE_PATH2 { get; set; }
     }
 }

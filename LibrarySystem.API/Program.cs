@@ -24,6 +24,12 @@ builder.Services.AddScoped<IBookReviewService, BookReviewService>();
 
 builder.Services.AddScoped<IBorrowedBookRepository, BorrowedBookRepository>();
 builder.Services.AddScoped<IBorrowedBookService, BorrowedBookService>();
+builder.Services.AddScoped<IHomepageRepository, HomepageRepository>();
+builder.Services.AddScoped<IHomepageService, HomepageService>();
+builder.Services.AddScoped<IContactUsPageRepository, ContactUsPageRepository>();
+builder.Services.AddScoped<IContactUsPageService, ContactUsPageService>();
+builder.Services.AddScoped<IAboutUsPageRepository, AboutUsPageRepository>();
+builder.Services.AddScoped<IAboutUsPageService, AboutUsPageService>();
 
 builder.Services.AddAuthentication(opt =>
 {
