@@ -13,16 +13,16 @@ namespace LibrarySystem.Core.Data
             Testimonials = new HashSet<Testimonial>();
         }
 
-        public decimal UserId { get; set; }
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
+        public decimal User_Id { get; set; }
+        public string? First_Name { get; set; }
+        public string? Last_Name { get; set; }
         public string? Email { get; set; }
-        public string? LocationLatitude { get; set; }
-        public string? LocationLongitude { get; set; }
-        public string? PhoneNumber { get; set; }
-        public string? ProfileImgPath { get; set; }
-        public DateTime? RegistrationDate { get; set; }
-        public string? IsActivated { get; set; }
+        public string? Location_Latitude { get; set; }
+        public string? Location_Longitude { get; set; }
+        public string? Phone_Number { get; set; }
+        public string? Profile_Img_Path { get; set; }
+        public DateTime? Registration_Date { get; set; }
+        public string? Is_Activated { get; set; }
 
         public virtual ICollection<BookReview> BookReviews { get; set; }
         public virtual ICollection<Borrowedbook> Borrowedbooks { get; set; }

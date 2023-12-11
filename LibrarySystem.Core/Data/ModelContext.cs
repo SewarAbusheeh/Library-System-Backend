@@ -573,12 +573,12 @@ namespace LibrarySystem.Core.Data
             {
                 entity.ToTable("ROLES");
 
-                entity.Property(e => e.RoleId)
+                entity.Property(e => e.Role_Id)
                     .HasColumnType("NUMBER(38)")
                     .ValueGeneratedOnAdd()
                     .HasColumnName("ROLE_ID");
 
-                entity.Property(e => e.RoleName)
+                entity.Property(e => e.Role_Name)
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("ROLE_NAME");
@@ -586,12 +586,12 @@ namespace LibrarySystem.Core.Data
 
             modelBuilder.Entity<Testimonial>(entity =>
             {
-                entity.HasKey(e => e.TestimonialsId)
+                entity.HasKey(e => e.Testimonials_Id)
                     .HasName("PK_TESTIMONIALS_TESTIMONIALS_ID");
 
                 entity.ToTable("TESTIMONIALS");
 
-                entity.Property(e => e.TestimonialsId)
+                entity.Property(e => e.Testimonials_Id)
                     .HasColumnType("NUMBER(38)")
                     .ValueGeneratedOnAdd()
                     .HasColumnName("TESTIMONIALS_ID");
@@ -601,7 +601,7 @@ namespace LibrarySystem.Core.Data
                     .IsUnicode(false)
                     .HasColumnName("STATUS");
 
-                entity.Property(e => e.SubmissionDate)
+                entity.Property(e => e.Submission_Date)
                     .HasColumnType("DATE")
                     .HasColumnName("SUBMISSION_DATE");
 
@@ -609,13 +609,13 @@ namespace LibrarySystem.Core.Data
                     .IsUnicode(false)
                     .HasColumnName("TEXT");
 
-                entity.Property(e => e.UserId)
+                entity.Property(e => e.User_Id)
                     .HasColumnType("NUMBER(38)")
                     .HasColumnName("USER_ID");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Testimonials)
-                    .HasForeignKey(d => d.UserId)
+                    .HasForeignKey(d => d.User_Id)
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
@@ -687,7 +687,7 @@ namespace LibrarySystem.Core.Data
             {
                 entity.ToTable("USERS");
 
-                entity.Property(e => e.UserId)
+                entity.Property(e => e.User_Id)
                     .HasColumnType("NUMBER(38)")
                     .ValueGeneratedOnAdd()
                     .HasColumnName("USER_ID");
@@ -697,41 +697,41 @@ namespace LibrarySystem.Core.Data
                     .IsUnicode(false)
                     .HasColumnName("EMAIL");
 
-                entity.Property(e => e.FirstName)
+                entity.Property(e => e.First_Name)
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("FIRST_NAME");
 
-                entity.Property(e => e.IsActivated)
+                entity.Property(e => e.Is_Activated)
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasColumnName("IS_ACTIVATED");
 
-                entity.Property(e => e.LastName)
+                entity.Property(e => e.Last_Name)
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("LAST_NAME");
 
-                entity.Property(e => e.LocationLatitude)
+                entity.Property(e => e.Location_Latitude)
                     .HasMaxLength(1000)
                     .IsUnicode(false)
                     .HasColumnName("LOCATION_LATITUDE");
 
-                entity.Property(e => e.LocationLongitude)
+                entity.Property(e => e.Location_Longitude)
                     .HasMaxLength(1000)
                     .IsUnicode(false)
                     .HasColumnName("LOCATION_LONGITUDE");
 
-                entity.Property(e => e.PhoneNumber)
+                entity.Property(e => e.Phone_Number)
                     .HasMaxLength(1000)
                     .IsUnicode(false)
                     .HasColumnName("PHONE_NUMBER");
 
-                entity.Property(e => e.ProfileImgPath)
+                entity.Property(e => e.Profile_Img_Path)
                     .IsUnicode(false)
                     .HasColumnName("PROFILE_IMG_PATH");
 
-                entity.Property(e => e.RegistrationDate)
+                entity.Property(e => e.Registration_Date)
                     .HasColumnType("DATE")
                     .HasColumnName("REGISTRATION_DATE");
             });

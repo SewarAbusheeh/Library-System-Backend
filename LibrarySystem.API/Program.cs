@@ -72,6 +72,18 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IBookService, BookService>();
 
+// Register Role-related interfaces and implementations
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IRoleService, RoleService>();
+
+// Register User-related interfaces and implementations
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+
+// Register Testimonial-related interfaces and implementations
+builder.Services.AddScoped<ITestimonialRepository, TestimonialRepository>();
+builder.Services.AddScoped<ITestimonialService, TestimonialService>();
+
 // Configure JWT authentication
 builder.Services.AddAuthentication(opt =>
 {
