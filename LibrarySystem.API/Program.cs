@@ -1,4 +1,3 @@
-// Import necessary namespaces/modules
 using LibrarySystem.Core.Common;
 using LibrarySystem.Core.Repository;
 using LibrarySystem.Core.Service;
@@ -13,7 +12,6 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 // Add controllers to handle incoming HTTP requests
 builder.Services.AddControllers();
 
@@ -33,30 +31,18 @@ builder.Services.AddScoped<IBookReviewService, BookReviewService>();
 // Register BorrowedBook-related interfaces and implementations
 builder.Services.AddScoped<IBorrowedBookRepository, BorrowedBookRepository>();
 builder.Services.AddScoped<IBorrowedBookService, BorrowedBookService>();
+
+// Register Homepage-related interfaces and implementations
 builder.Services.AddScoped<IHomepageRepository, HomepageRepository>();
 builder.Services.AddScoped<IHomepageService, HomepageService>();
+
+// Register ContactUsPage-related interfaces and implementations
 builder.Services.AddScoped<IContactUsPageRepository, ContactUsPageRepository>();
 builder.Services.AddScoped<IContactUsPageService, ContactUsPageService>();
+
+// Register AboutUsPage-related interfaces and implementations
 builder.Services.AddScoped<IAboutUsPageRepository, AboutUsPageRepository>();
 builder.Services.AddScoped<IAboutUsPageService, AboutUsPageService>();
-
-// Configure JWT authentication
-builder.Services.AddAuthentication(opt =>
-{
-    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
-    };
-});
 
 // Register JWT-related interfaces and implementations
 builder.Services.AddScoped<IJWTRepository, JWTRepository>();
@@ -85,6 +71,24 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 // Register Book-related interfaces and implementations
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IBookService, BookService>();
+
+// Configure JWT authentication
+builder.Services.AddAuthentication(opt =>
+{
+    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
+    };
+});
 
 // Build the application
 var app = builder.Build();
