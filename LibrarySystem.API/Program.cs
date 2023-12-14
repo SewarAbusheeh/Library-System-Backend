@@ -102,6 +102,15 @@ builder.Services.AddAuthentication(opt =>
     };
 });
 
+builder.Services.AddCors(corsOptions =>
+{
+    corsOptions.AddPolicy("policy",
+    builder =>
+    {
+        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
+});
+
 // Build the application
 var app = builder.Build();
 
@@ -123,6 +132,9 @@ app.UseAuthorization();
 
 // Use authentication middleware
 app.UseAuthentication();
+
+// Use CORS
+app.UseCors("policy");
 
 // Map incoming HTTP requests to controllers
 app.MapControllers();
