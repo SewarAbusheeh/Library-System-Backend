@@ -32,7 +32,7 @@ builder.Services.AddScoped<IBookReviewService, BookReviewService>();
 builder.Services.AddScoped<IBorrowedBookRepository, BorrowedBookRepository>();
 builder.Services.AddScoped<IBorrowedBookService, BorrowedBookService>();
 
-// Register Homepage-related interfaces and implementations
+ // Register Homepage-related interfaces and implementations
 builder.Services.AddScoped<IHomepageRepository, HomepageRepository>();
 builder.Services.AddScoped<IHomepageService, HomepageService>();
 
