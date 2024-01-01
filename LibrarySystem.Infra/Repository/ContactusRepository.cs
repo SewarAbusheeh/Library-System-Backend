@@ -23,7 +23,7 @@ namespace LibrarySystem.Infra.Repository
         }
         public List<Contactu> GetAllContactUsRequests()
         {
-            IEnumerable<Contactu> result = dbContext.Connection.Query<Contactu>("CONTACTUS_PACKAGE.GetAllContactUsEntrie", commandType: CommandType.StoredProcedure);
+            IEnumerable<Contactu> result = dbContext.Connection.Query<Contactu>("CONTACTUS_PACKAGE.GetAllContactUsEntries", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 
