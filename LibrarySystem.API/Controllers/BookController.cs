@@ -32,7 +32,7 @@ namespace LibrarySystem.API.Controllers
 
         [Route("UpdateBook")]
         [HttpPut]
-        public void UpdateBook(int id, Book book)
+        public void UpdateBook(int id,Book book)
         {
             bookService.UpdateBook(id, book);
         }
