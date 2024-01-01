@@ -1,7 +1,9 @@
-﻿using LibrarySystem.Core.Data;
+﻿using Dapper;
+using LibrarySystem.Core.Data;
 using LibrarySystem.Core.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace LibrarySystem.API.Controllers
 {
@@ -50,5 +52,24 @@ namespace LibrarySystem.API.Controllers
         {
             homePageService.DeleteHomePageData(id);
         }
+
+
+        [Route("uploadImage")]
+        [HttpPost]
+        public Homepage UploadIMage()
+        {
+            var file = Request.Form.Files[0];
+            var fileName = Guid.NewGuid().ToString() +
+            "_" + file.FileName;
+            var fullPath = Path.Combine("C:\\Users\\user\\Desktop\\LibraraySystem\\front-end\\LibrarySystemFrontEnd\\src\\assets\\images", fileName);
+            using (var stream = new FileStream(fullPath, FileMode.Create))
+            {
+                file.CopyTo(stream);
+            }
+            Homepage item = new Homepage();
+            item.LOGO_PATH = fileName;
+            return item;
+        }
+      
     }
 }
