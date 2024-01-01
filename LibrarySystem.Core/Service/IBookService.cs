@@ -14,5 +14,9 @@ namespace LibrarySystem.Core.Service
         void DeleteBook(int id);
         Book GetBookById(int id);
         List<Book> GetAllBooks();
+
+        public List<Book> topBooks();
+        public Task<List<Category>> GetAllCategoryBooks();
+        public Book FindBestSellingBook();
     }
 }
