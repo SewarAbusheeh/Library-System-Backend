@@ -40,12 +40,25 @@ builder.Services.AddScoped<IContactUsPageService, ContactUsPageService>();
 builder.Services.AddScoped<IAboutUsPageRepository, AboutUsPageRepository>();
 builder.Services.AddScoped<IAboutUsPageService, AboutUsPageService>();
 
+//to let api see the angular project 
+// allow any external domin to reatch to our domin (api )
+builder.Services.AddCors(corsOptions =>
+{
+    corsOptions.AddPolicy("policy",
+        builder =>
+        {
+            builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+        });
+});
+
+//
 // Configure JWT authentication
 builder.Services.AddAuthentication(opt =>
 {
     opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
+
 .AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
@@ -98,7 +111,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("policy");
 // Redirect HTTP requests to HTTPS
 app.UseHttpsRedirection();
 

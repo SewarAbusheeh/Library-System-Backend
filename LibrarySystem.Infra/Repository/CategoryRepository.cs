@@ -64,5 +64,25 @@ namespace LibrarySystem.Infra.Repository
 
             var result = dbContext.Connection.Execute("CATEGORY_PACKAGE.UpdateCategory", p, commandType: CommandType.StoredProcedure);
         }
+        public IEnumerable<Category> GetCategoryByLibraryId(int id)
+        {
+            var p = new DynamicParameters();
+            p.Add("LIBRARY_ID", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+
+            // Call the stored procedure and retrieve the results
+            var result = dbContext.Connection.Query<Category>("GetCategoryByLibraryId", p, commandType: CommandType.StoredProcedure);
+            return result;
+        }
+
+        public List<Category> GetCategoriesByLibraryId(int id)
+        {
+            var p = new DynamicParameters();
+            p.Add("libraryId", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+
+            // Call the stored procedure and retrieve the results
+            var result = dbContext.Connection.Query<Category>("GetCategoryByLibraryId", p, commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
     }
+   
 }

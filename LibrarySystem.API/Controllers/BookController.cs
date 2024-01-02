@@ -50,5 +50,20 @@ namespace LibrarySystem.API.Controllers
         {
             return bookService.GetBookById(id);
         }
+        [Route("UploadImageBook")]
+        [HttpPost]
+        public Book UploadIMage()
+        {
+            var file = Request.Form.Files[0];
+            var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+            var fullPath = Path.Combine("C:\\Users\\hp\\Desktop\\Angular Project Restructure\\LibrarySystemFrontEnd\\src\\assets\\Uploded-Images", fileName);
+            using (var stream = new FileStream(fullPath, FileMode.Create))
+            {
+                file.CopyTo(stream);
+            }
+            Book item = new Book();
+            item.Book_Img_Path = fileName;
+            return item;
+        }
     }
 }
