@@ -2,6 +2,7 @@
 using LibrarySystem.Core.Common;
 using LibrarySystem.Core.Data;
 using LibrarySystem.Core.Repository;
+using LibrarySystem.Infra.Service;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -75,9 +76,85 @@ namespace LibrarySystem.Infra.Repository
             p.Add("p_pricePerDay", book.Price_Per_Day, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("p_avgRating", book.Avg_Rating, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("p_categoryId", book.Category_Id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-
+  
             var result = dbContext.Connection.Execute("BOOKS_PACKAGE.UpdateBook", p, commandType: CommandType.StoredProcedure);
 
         }
+
+        public List<Book> topBooks()
+        {
+            IEnumerable < Book > books= dbContext.Connection.Query<Book>("BOOKS_PACKAGE.GetAllBooks", commandType: CommandType.StoredProcedure); 
+            var result = books.OrderByDescending(book => book.Avg_Rating).Take(4);
+            return result.ToList();
+        }
+
+        //        public async Task<List<Category>> GetAllCategoryCourse()
+        //        {
+        //            var p = new DynamicParameters();
+        //            var result =  dbContext.Connection.Query<Category, Book, Category>("Books_Package.GetAllCategoryBook",
+        //        (Category, book) =>
+        //        {
+        //            Category.Books.Add(book);
+        //            return Category;
+        //        }, splitOn: "book_Id",
+        //param: null,
+        //commandType: CommandType.StoredProcedure
+        //);
+        //            var results = result.GroupBy(p =>
+        //            p.Category_Id).Select(g =>
+        //            {
+        //                var groupedPost = g.First();
+        //                groupedPost.Books = g.Select(p =>
+        //                p.Books.Single()).ToList();
+        //                return groupedPost;
+        //            });
+        //            return results.ToList();
+        //        }
+
+        public async Task<List<Category>> GetAllCategoryBooks()
+        {
+            var result = dbContext.Connection.Query<Category, Book, Category>("Books_Package.GetAllCategoryBook",
+            (Category, book) =>
+            {
+                Category.Books.Add(book);
+                return Category;
+            }, splitOn: "Category_Id",  // Adjusted to match the common column
+            param: null,
+            commandType: CommandType.StoredProcedure
+            );
+            var results = result.GroupBy(p => p.Category_Id).Select(g =>
+            {
+                var groupedPost = g.First();
+                groupedPost.Books = g.Select(p => p.Books.Single()).ToList();
+                return groupedPost;
+            });
+            return results.ToList();
+        }
+
+        public Book FindBestSellingBook()
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("p_BestSellingBookId", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            parameters.Add("p_BestSellingCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+            dbContext.Connection.Query("Books_Package.FindBestSellingBook", parameters, commandType: CommandType.StoredProcedure);
+
+            int bestSellingBookId = parameters.Get<int>("p_BestSellingBookId");
+            int bestSellingCount = parameters.Get<int>("p_BestSellingCount");
+            if (bestSellingBookId != 0)
+            {
+
+                return this.GetBookById(bestSellingBookId);
+            }
+            else
+            {
+                // No best-selling book found
+                return null;
+            }
+        }
     }
+
+
+
+
 }

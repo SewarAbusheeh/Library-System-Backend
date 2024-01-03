@@ -2,16 +2,19 @@
 using LibrarySystem.Core.Common;
 using LibrarySystem.Core.Data;
 using LibrarySystem.Core.Repository;
+using LibrarySystem.Core.Service;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace LibrarySystem.Infra.Repository
 {
     public class BorrowedBookRepository : IBorrowedBookRepository
     {
         private readonly IDbContext dbContext;
+        private  readonly IBookService bookService;
 
         public BorrowedBookRepository(IDbContext dbContext)
         {
@@ -68,5 +71,7 @@ namespace LibrarySystem.Infra.Repository
 
             dbContext.Connection.Execute("BorrowedBooks_Package.DeleteBorrowedBook", p, commandType: CommandType.StoredProcedure);
         }
+       
+
     }
 }

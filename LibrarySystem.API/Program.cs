@@ -1,4 +1,3 @@
-// Import necessary namespaces/modules
 using LibrarySystem.Core.Common;
 using LibrarySystem.Core.Repository;
 using LibrarySystem.Core.Service;
@@ -13,7 +12,6 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 // Add controllers to handle incoming HTTP requests
 builder.Services.AddControllers();
 
@@ -33,43 +31,18 @@ builder.Services.AddScoped<IBookReviewService, BookReviewService>();
 // Register BorrowedBook-related interfaces and implementations
 builder.Services.AddScoped<IBorrowedBookRepository, BorrowedBookRepository>();
 builder.Services.AddScoped<IBorrowedBookService, BorrowedBookService>();
+
+ // Register Homepage-related interfaces and implementations
 builder.Services.AddScoped<IHomepageRepository, HomepageRepository>();
 builder.Services.AddScoped<IHomepageService, HomepageService>();
+
+// Register ContactUsPage-related interfaces and implementations
 builder.Services.AddScoped<IContactUsPageRepository, ContactUsPageRepository>();
 builder.Services.AddScoped<IContactUsPageService, ContactUsPageService>();
+
+// Register AboutUsPage-related interfaces and implementations
 builder.Services.AddScoped<IAboutUsPageRepository, AboutUsPageRepository>();
 builder.Services.AddScoped<IAboutUsPageService, AboutUsPageService>();
-
-//to let api see the angular project 
-// allow any external domin to reatch to our domin (api )
-builder.Services.AddCors(corsOptions =>
-{
-    corsOptions.AddPolicy("policy",
-        builder =>
-        {
-            builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-        });
-});
-
-//
-// Configure JWT authentication
-builder.Services.AddAuthentication(opt =>
-{
-    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-
-.AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
-    };
-});
 
 // Register JWT-related interfaces and implementations
 builder.Services.AddScoped<IJWTRepository, JWTRepository>();
@@ -99,6 +72,45 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IBookService, BookService>();
 
+// Register Role-related interfaces and implementations
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IRoleService, RoleService>();
+
+// Register User-related interfaces and implementations
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+
+// Register Testimonial-related interfaces and implementations
+builder.Services.AddScoped<ITestimonialRepository, TestimonialRepository>();
+builder.Services.AddScoped<ITestimonialService, TestimonialService>();
+
+// Configure JWT authentication
+builder.Services.AddAuthentication(opt =>
+{
+    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
+    };
+});
+
+builder.Services.AddCors(corsOptions =>
+{
+    corsOptions.AddPolicy("policy",
+    builder =>
+    {
+        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    });
+});
+
 // Build the application
 var app = builder.Build();
 
@@ -120,6 +132,9 @@ app.UseAuthorization();
 
 // Use authentication middleware
 app.UseAuthentication();
+
+// Use CORS
+app.UseCors("policy");
 
 // Map incoming HTTP requests to controllers
 app.MapControllers();

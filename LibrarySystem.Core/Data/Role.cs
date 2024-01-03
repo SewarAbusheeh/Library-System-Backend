@@ -10,8 +10,8 @@ namespace LibrarySystem.Core.Data
             Logins = new HashSet<Login>();
         }
 
-        public decimal RoleId { get; set; }
-        public string? RoleName { get; set; }
+        public decimal Role_Id { get; set; }
+        public string? Role_Name { get; set; }
 
         public virtual ICollection<Login> Logins { get; set; }
     }
