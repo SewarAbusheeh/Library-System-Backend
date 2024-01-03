@@ -42,5 +42,9 @@ namespace LibrarySystem.Infra.Service
         {
             categoryRepository.UpdateCategory(id, category);
         }
+        public List<Category> GetCategoriesByLibraryId(int id)
+        {
+           return  categoryRepository.GetCategoriesByLibraryId(id);
+        }
     }
 }

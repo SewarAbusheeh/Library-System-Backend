@@ -51,8 +51,8 @@ namespace LibrarySystem.API.Controllers
         {
             return bookService.GetBookById(id);
         }
-
-        [Route("uploadImage")]
+        
+        [Route("UploadImageBook")]
         [HttpPost]
         public Book UploadIMage()
         {
@@ -60,6 +60,7 @@ namespace LibrarySystem.API.Controllers
             var fileName = Guid.NewGuid().ToString() +
             "_" + file.FileName;
             var fullPath = Path.Combine("C:\\Users\\user\\Desktop\\LibraraySystem\\front-end\\LibrarySystemFrontEnd\\src\\assets\\images", fileName);
+            
             using (var stream = new FileStream(fullPath, FileMode.Create))
             {
                 file.CopyTo(stream);
@@ -75,6 +76,7 @@ namespace LibrarySystem.API.Controllers
         {
             return bookService.topBooks();
         }
+        
         [Route("CategoryBooks")]
         [HttpGet]
         public Task<List<Category>> GetAllCategoryBooks()
@@ -88,5 +90,6 @@ namespace LibrarySystem.API.Controllers
         {
             return bookService.FindBestSellingBook();
         }
+
     }
 }
