@@ -50,5 +50,11 @@ namespace LibrarySystem.API.Controllers
         {
             return categoryService.GetCategoryById(id);
         }
+        [Route("GetCategoriesByLibraryId")]
+        [HttpGet]
+        public List<Category> GetCategoriesByLibraryId(int id)
+        {
+            return categoryService.GetCategoriesByLibraryId(id);
+        }
     }
 }

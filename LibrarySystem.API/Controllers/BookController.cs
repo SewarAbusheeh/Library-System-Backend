@@ -1,5 +1,6 @@
 ﻿using LibrarySystem.Core.Data;
 using LibrarySystem.Core.Service;
+using LibrarySystem.Infra.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,7 +33,7 @@ namespace LibrarySystem.API.Controllers
 
         [Route("UpdateBook")]
         [HttpPut]
-        public void UpdateBook(int id, Book book)
+        public void UpdateBook(int id,Book book)
         {
             bookService.UpdateBook(id, book);
         }
@@ -50,5 +51,45 @@ namespace LibrarySystem.API.Controllers
         {
             return bookService.GetBookById(id);
         }
+        
+        [Route("UploadImageBook")]
+        [HttpPost]
+        public Book UploadIMage()
+        {
+            var file = Request.Form.Files[0];
+            var fileName = Guid.NewGuid().ToString() +
+            "_" + file.FileName;
+            var fullPath = Path.Combine("C:\\Users\\user\\Desktop\\LibraraySystem\\front-end\\LibrarySystemFrontEnd\\src\\assets\\images", fileName);
+            
+            using (var stream = new FileStream(fullPath, FileMode.Create))
+            {
+                file.CopyTo(stream);
+            }
+            Book item = new Book();
+            item.Book_Img_Path = fileName;
+            return item;
+        }
+
+        [Route("TopBooks")]
+        [HttpGet]
+        public List<Book> topBooks()
+        {
+            return bookService.topBooks();
+        }
+        
+        [Route("CategoryBooks")]
+        [HttpGet]
+        public Task<List<Category>> GetAllCategoryBooks()
+        {
+            return bookService.GetAllCategoryBooks();
+        }
+
+        [HttpGet]
+        [Route("FindBestSellingBook")]
+        public Book FindBestSellingBook()
+        {
+            return bookService.FindBestSellingBook();
+        }
+
     }
 }

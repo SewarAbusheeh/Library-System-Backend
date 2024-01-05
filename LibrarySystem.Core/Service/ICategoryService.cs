@@ -14,5 +14,6 @@ namespace LibrarySystem.Core.Service
         void DeleteCategory(int id);
         List<Category> GetAllCategories();
         Category GetCategoryById(int id);
+        List<Category> GetCategoriesByLibraryId(int id);
     }
 }

@@ -123,7 +123,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("policy");
 // Redirect HTTP requests to HTTPS
 app.UseHttpsRedirection();
 

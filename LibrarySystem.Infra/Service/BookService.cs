@@ -42,5 +42,18 @@ namespace LibrarySystem.Infra.Service
         {
             bookRepository.UpdateBook(id, book);
         }
+        public List<Book> topBooks()
+        {
+            return bookRepository.topBooks();   
+        }
+        public  Task<List<Category>> GetAllCategoryBooks()
+        {
+            return bookRepository.GetAllCategoryBooks();
+        }
+
+        public Book FindBestSellingBook()
+        {
+            return bookRepository.FindBestSellingBook();
+        }
     }
 }
