@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace LibrarySystem.Core.Service
         void DeleteLibrary(int id);
         List<Library> GetAllLibraries();
         Library GetLibraryById(int id);
+        List<BorrowedBooks_LibraryDTO> GetBorrowedBooksCountInLibraries();
     }
 }

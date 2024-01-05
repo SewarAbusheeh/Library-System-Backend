@@ -68,5 +68,15 @@ namespace LibrarySystem.Infra.Repository
             u.Add("p_isActivated", user.Is_Activated, dbType: DbType.String, direction: ParameterDirection.Input);
             var result = context.Connection.Execute("Users_Package.UpdateUser",u,commandType:CommandType.StoredProcedure);
         }
+        public int NumberOfRegisteredUsers()
+        {
+            var p = new DynamicParameters();
+            p.Add("p_user_count", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            
+            context.Connection.Query("Users_Package.CountRegisteredUsers", p, commandType: CommandType.StoredProcedure);
+
+            int usersCount = p.Get<int>("p_user_count"); 
+            return usersCount;
+        }
     }
 }

@@ -40,5 +40,9 @@ namespace LibrarySystem.Infra.Service
         {
             userRepository.UpdateUser(id, user);
         }
+        public int NumberOfRegisteredUsers()
+        {
+            return userRepository.NumberOfRegisteredUsers();
+        }
     }
 }

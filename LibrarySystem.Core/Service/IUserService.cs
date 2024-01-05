@@ -14,5 +14,7 @@ namespace LibrarySystem.Core.Service
         void UpdateUser(int id, User user);
         List<User> GetAllUsers();
         User GetUserById(int id);
+
+        public int NumberOfRegisteredUsers();
     }
 }

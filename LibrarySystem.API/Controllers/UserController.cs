@@ -39,5 +39,11 @@ namespace LibrarySystem.API.Controllers
         public User GetUserById(int id) { 
             return userService.GetUserById(id);
         }
+        [Route("NumberOfRegisteredUsers")]
+        [HttpGet]
+        public int NumberOfRegisteredUsers()
+        {
+            return userService.NumberOfRegisteredUsers();   
+        }
     }
 }
