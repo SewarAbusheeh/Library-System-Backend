@@ -24,6 +24,7 @@ namespace LibrarySystem.Infra.Repository
             p.Add("User_NAME", login.Username, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("PASS", login.Password, dbType: DbType.String, direction: ParameterDirection.Input);
             IEnumerable<Login> result = dbContext.Connection.Query<Login>("Login_Package.User_Login", p, commandType: CommandType.StoredProcedure);
+
             return result.FirstOrDefault();
         }
     }
