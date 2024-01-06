@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,6 @@ namespace LibrarySystem.Core.Service
         void DeleteBorrowedBook(int id);
         public void UpdateBorrowedBook(Borrowedbook borrowedBook);
         Borrowedbook GetBorrowedBookById(int id);
-        
+        List<BorrowedBooksDetails> GetBorrowedBooksDetails();
     }
 }
