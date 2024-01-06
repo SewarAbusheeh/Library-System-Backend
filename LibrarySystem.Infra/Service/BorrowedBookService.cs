@@ -1,6 +1,8 @@
 ﻿using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Repository;
 using LibrarySystem.Core.Service;
+using LibrarySystem.Infra.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,5 +39,10 @@ namespace LibrarySystem.Infra.Service
             return borrowedBookRepository.GetBorrowedBookById(id);
         }
 
+        public List<BorrowedBooksDetails> GetBorrowedBooksDetails()
+        {
+            return borrowedBookRepository.GetBorrowedBooksDetails();
+        }
+    
     }
 }

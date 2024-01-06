@@ -1,7 +1,9 @@
 ﻿using Dapper;
 using LibrarySystem.Core.Common;
 using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Repository;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -68,5 +70,14 @@ namespace LibrarySystem.Infra.Repository
 
             dbContext.Connection.Execute("BorrowedBooks_Package.DeleteBorrowedBook", p, commandType: CommandType.StoredProcedure);
         }
+
+        public  List<BorrowedBooksDetails> GetBorrowedBooksDetails()
+        {
+           
+            IEnumerable<BorrowedBooksDetails> result = dbContext.Connection.Query<BorrowedBooksDetails>("GetBorrowedBooksDetails1", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+                                         
+
     }
 }

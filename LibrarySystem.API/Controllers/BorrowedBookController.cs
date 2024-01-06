@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -40,10 +41,15 @@ namespace LibrarySystem.API.Controllers
         }
         [HttpPut]
         [Route("UpdateBorrowedBook")]
-        public void UpdateBorrowedBook(Borrowedbook borrowedBook)
+        public void UpdateBorrowedBook(Borrowedbook borrowedBook) 
         {
             borrowedBookService.UpdateBorrowedBook(borrowedBook);
         }
-
+        [HttpGet]
+        [Route("GetBorrowedBooksDetails")]
+        public List<BorrowedBooksDetails> GetBorrowedBooksDetails()
+        {
+            return borrowedBookService.GetBorrowedBooksDetails();
+        }
     }
 }
