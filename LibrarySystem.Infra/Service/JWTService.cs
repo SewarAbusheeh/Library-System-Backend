@@ -30,9 +30,11 @@ namespace LibrarySystem.Infra.Service
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-                var claims = new List<Claim>{
+                var claims = new List<Claim>
+                {
                         new Claim(ClaimTypes.Name, result.Username),
-                        new Claim(ClaimTypes.Role, result.RoleId.ToString())
+                        new Claim(ClaimTypes.Role, result.RoleId.ToString()),
+                        new Claim(ClaimTypes.NameIdentifier, result.UserId.ToString())
                 };
                 var tokeOptions = new JwtSecurityToken(
                 claims: claims,

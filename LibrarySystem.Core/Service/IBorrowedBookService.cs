@@ -15,7 +15,6 @@ namespace LibrarySystem.Core.Service
         void DeleteBorrowedBook(int id);
         public void UpdateBorrowedBook(Borrowedbook borrowedBook);
         Borrowedbook GetBorrowedBookById(int id);
-
         List<BorrowedBooksDetails> GetBorrowedBooksDetails();
     }
 }
