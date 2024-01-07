@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using LibrarySystem.Core.Common;
 using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Repository;
 using System;
 using System.Collections.Generic;
@@ -77,6 +78,12 @@ namespace LibrarySystem.Infra.Repository
 
             int usersCount = p.Get<int>("p_user_count"); 
             return usersCount;
+        }
+        
+        public List<UsersWithReservations> GetUsersWithReservations()
+        {
+            IEnumerable<UsersWithReservations> users = context.Connection.Query<UsersWithReservations>("Users_Package.GetUsersWithReservations", commandType: CommandType.StoredProcedure);
+            return users.ToList();
         }
     }
 }

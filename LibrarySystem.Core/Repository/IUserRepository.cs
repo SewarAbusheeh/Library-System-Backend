@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace LibrarySystem.Core.Repository
         List<User> GetAllUsers();
         User GetUserById(int id);
         public int NumberOfRegisteredUsers();
+        public List<UsersWithReservations> GetUsersWithReservations();
     }
 }
