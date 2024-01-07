@@ -623,32 +623,32 @@ namespace LibrarySystem.Core.Data
             {
                 entity.ToTable("TESTIMONIALPAGE");
 
-                entity.Property(e => e.TestimonialpageId)
+                entity.Property(e => e.Testimonialpage_Id)
                     .HasColumnType("NUMBER(38)")
                     .ValueGeneratedOnAdd()
                     .HasColumnName("TESTIMONIALPAGE_ID");
 
-                entity.Property(e => e.FooterComponent1)
+                entity.Property(e => e.Footer_Component1)
                     .IsUnicode(false)
                     .HasColumnName("FOOTER_COMPONENT1");
 
-                entity.Property(e => e.FooterComponent2)
+                entity.Property(e => e.Footer_Component2)
                     .IsUnicode(false)
                     .HasColumnName("FOOTER_COMPONENT2");
 
-                entity.Property(e => e.FooterComponent3)
+                entity.Property(e => e.Footer_Component3)
                     .IsUnicode(false)
                     .HasColumnName("FOOTER_COMPONENT3");
 
-                entity.Property(e => e.HeaderComponent1)
+                entity.Property(e => e.Header_Component1)
                     .IsUnicode(false)
                     .HasColumnName("HEADER_COMPONENT1");
 
-                entity.Property(e => e.HeaderComponent2)
+                entity.Property(e => e.Header_Component2)
                     .IsUnicode(false)
                     .HasColumnName("HEADER_COMPONENT2");
 
-                entity.Property(e => e.HeaderComponent3)
+                entity.Property(e => e.Header_Component3)
                     .IsUnicode(false)
                     .HasColumnName("HEADER_COMPONENT3");
 
