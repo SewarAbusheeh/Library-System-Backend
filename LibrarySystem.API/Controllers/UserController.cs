@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -39,6 +40,18 @@ namespace LibrarySystem.API.Controllers
         public User GetUserById(int id) { 
             return userService.GetUserById(id);
         }
+        
+        [Route("NumberOfRegisteredUsers")]
+        [HttpGet]
+        public int NumberOfRegisteredUsers()
+        {
+            return userService.NumberOfRegisteredUsers();   
+        }
+        [Route("GetUsersWithReservations")]
+        [HttpGet]
+        public List<UsersWithReservations> GetUsersWithReservations()
+        {
+            return userService.GetUsersWithReservations();
 
         [Route("uploadImage")]
         [HttpPost]
