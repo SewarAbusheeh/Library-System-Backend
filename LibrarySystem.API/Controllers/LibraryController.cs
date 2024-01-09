@@ -51,22 +51,29 @@ namespace LibrarySystem.API.Controllers
             return libraryService.GetLibraryById(id);
         }
 
-     
+
         [Route("uploadImage")]
         [HttpPost]
-        public Library UploadIMage()
+        public IActionResult UploadImage()
         {
             var file = Request.Form.Files[0];
-            var fileName = Guid.NewGuid().ToString() +
-            "_" + file.FileName;
-            var fullPath = Path.Combine("C:\\Users\\user\\Desktop\\LibraraySystem\\front-end\\LibrarySystemFrontEnd\\src\\assets\\images", fileName);
-            using (var stream = new FileStream(fullPath, FileMode.Create))
+            if (file != null && (file.ContentType == "image/jpeg" || file.ContentType == "image/jpg" || file.ContentType == "image/png"))
             {
-                file.CopyTo(stream);
+                var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                var fullPath = Path.Combine("C:\\Users\\Ahmad\\Desktop\\LibrarySystemFrontEnd\\LibrarySystemFrontEnd\\src\\assets\\images", fileName);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
+                Library item = new Library();
+                item.Image_Path1 = fileName;
+                return Ok(item);
             }
-            Library item = new Library();
-            item.Image_Path1 = fileName;
-            return item;
+            else
+            {
+                return BadRequest("Invalid file format. Please upload an image file.");
+            }
         }
+
     }
 }
