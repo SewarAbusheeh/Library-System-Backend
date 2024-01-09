@@ -59,7 +59,7 @@ namespace LibrarySystem.API.Controllers
             var file = Request.Form.Files[0];
             var fileName = Guid.NewGuid().ToString() +
             "_" + file.FileName;
-            var fullPath = Path.Combine("C:\\Users\\user\\Desktop\\LibraraySystem\\front-end\\LibrarySystemFrontEnd\\src\\assets\\images", fileName);
+            var fullPath = Path.Combine("D:\\Frond End last 4 Days\\LibrarySystemFrontEnd-1\\src\\assets\\LibraryImages", fileName);
             using (var stream = new FileStream(fullPath, FileMode.Create))
             {
                 file.CopyTo(stream);

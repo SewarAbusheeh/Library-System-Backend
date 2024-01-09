@@ -46,7 +46,7 @@ namespace LibrarySystem.API.Controllers
         {
             var file = Request.Form.Files[0];
             var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
-            var fullPath = Path.Combine("C:\\Users\\ahmad\\OneDrive\\Documents\\VSC\\FinalProject\\LibrarySystemFrontEnd\\src\\assets\\UserImages", fileName);
+            var fullPath = Path.Combine("D:\\Fron-End Fixe upload images\\LibrarySystemFrontEnd\\src\\assets\\UserImages", fileName);
 
             using (var stream = new FileStream(fullPath, FileMode.Create))
             {
