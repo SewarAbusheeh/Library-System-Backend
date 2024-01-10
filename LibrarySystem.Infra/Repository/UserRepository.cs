@@ -88,20 +88,24 @@ namespace LibrarySystem.Infra.Repository
         public void CreateUserLogin(UserLogin userLogin)
         {
             var u = new DynamicParameters();
-            u.Add("p_firstName", userLogin.First_Name, dbType: DbType.String, direction: ParameterDirection.Input);
-            u.Add("p_lastName", userLogin.Last_Name, dbType: DbType.String, direction: ParameterDirection.Input);
-            u.Add("p_email", userLogin.Email, dbType: DbType.String, direction: ParameterDirection.Input);
-            u.Add("p_locationLatitude", userLogin.Location_Latitude, dbType: DbType.String, direction: ParameterDirection.Input);
-            u.Add("p_locationLongitude", userLogin.Location_Longitude, dbType: DbType.String, direction: ParameterDirection.Input);
-            u.Add("p_phoneNumber", userLogin.Phone_Number, dbType: DbType.String, direction: ParameterDirection.Input);
-            u.Add("p_profileImgPath", userLogin.Profile_Img_Path, dbType: DbType.String, direction: ParameterDirection.Input);
-            u.Add("p_registrationDate", userLogin.Registration_Date, dbType: DbType.DateTime, direction: ParameterDirection.Input);
-            u.Add("p_isActivated", userLogin.Is_Activated, dbType: DbType.String, direction: ParameterDirection.Input);
-            u.Add("p_username", userLogin.Username, dbType: DbType.String, direction: ParameterDirection.Input);
-            u.Add("p_password", userLogin.Password, dbType: DbType.String, direction: ParameterDirection.Input);
-            //u.Add("p_user_id", userLogin.User_Id, dbType: DbType.String, direction: ParameterDirection.Output);
-            u.Add("p_role_id", userLogin.Role_Id , dbType: DbType.String, direction: ParameterDirection.Input);
-            var result2 = context.Connection.Execute("CreateUserLogin", u, commandType: CommandType.StoredProcedure);
+            u.Add("p_firstName", userLogin.First_Name, DbType.String, ParameterDirection.Input);
+            u.Add("p_lastName", userLogin.Last_Name, DbType.String, ParameterDirection.Input);
+            u.Add("p_email", userLogin.Email, DbType.String, ParameterDirection.Input);
+            u.Add("p_locationLatitude", userLogin.Location_Latitude, DbType.String, ParameterDirection.Input);
+            u.Add("p_locationLongitude", userLogin.Location_Longitude, DbType.String, ParameterDirection.Input);
+            u.Add("p_phoneNumber", userLogin.Phone_Number, DbType.String, ParameterDirection.Input);
+            u.Add("p_profileImgPath", userLogin.Profile_Img_Path, DbType.String, ParameterDirection.Input);
+            u.Add("p_registrationDate", userLogin.Registration_Date, DbType.DateTime, ParameterDirection.Input);
+            u.Add("p_isActivated", userLogin.Is_Activated, DbType.String, ParameterDirection.Input);
+            u.Add("p_username", userLogin.Username, DbType.String, ParameterDirection.Input);
+            u.Add("p_password", userLogin.Password, DbType.String, ParameterDirection.Input);
+            u.Add("p_roleId", userLogin.Role_Id, DbType.Int32, ParameterDirection.Input);
+            // u.Add("p_userId", dbType: DbType.Int32, direction: ParameterDirection.Output); // OUT parameter
+
+            context.Connection.Execute("CreateUserLogin", u, commandType: CommandType.StoredProcedure);
+
+            // Retrieve the output UserId
+            // userLogin.User_Id = u.Get<int>("p_userId");
         }
     }
 }
