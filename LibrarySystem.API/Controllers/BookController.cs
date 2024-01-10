@@ -56,8 +56,8 @@ namespace LibrarySystem.API.Controllers
         [HttpPost]
         public IActionResult UploadImage()
         {
-            var file = Request.Form.Files[0];
-            if (file != null && ((file.ContentType == "image/jpeg" || file.ContentType == "image/jpg" || file.ContentType == "image/png")))
+            var file = Request.Form.Files.FirstOrDefault();
+            if (file != null && (file.ContentType == "image/jpeg" || file.ContentType == "image/jpg" || file.ContentType == "image/png"))
             {
                 var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
                 var fullPath = Path.Combine("C:\\Users\\Ahmad\\Desktop\\LibrarySystemFrontEnd\\LibrarySystemFrontEnd\\src\\assets\\images", fileName);
@@ -74,13 +74,14 @@ namespace LibrarySystem.API.Controllers
                 return BadRequest("Invalid file format. Please upload an image file.");
             }
         }
+
         [Route("UploadPDFBook")]
         [HttpPost]
         public IActionResult UploadPDF()
         {
-            var file = Request.Form.Files[0];
+            var file = Request.Form.Files.FirstOrDefault(f => f.ContentType == "application/pdf");
 
-            if (file != null && file.ContentType == "application/pdf")
+            if (file != null)
             {
                 var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
                 var fullPath = Path.Combine("C:\\Users\\Ahmad\\Desktop\\LibrarySystemFrontEnd\\LibrarySystemFrontEnd\\src\\assets\\PDF", fileName);
@@ -89,7 +90,7 @@ namespace LibrarySystem.API.Controllers
                     file.CopyTo(stream);
                 }
                 Book item = new Book();
-                item.Book_Img_Path = fileName;
+                item.Book_Pdf_Path = fileName;
                 return Ok(item);
             }
             else
@@ -97,6 +98,7 @@ namespace LibrarySystem.API.Controllers
                 return BadRequest("Invalid file format. Please upload a PDF file.");
             }
         }
+
 
         [Route("TopBooks")]
         [HttpGet]
