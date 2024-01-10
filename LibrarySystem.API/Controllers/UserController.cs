@@ -3,6 +3,7 @@ using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
 
 namespace LibrarySystem.API.Controllers
 {
@@ -64,20 +65,27 @@ namespace LibrarySystem.API.Controllers
 
         [Route("uploadImage")]
         [HttpPost]
-        public User UploadIMage()
+        public IActionResult UploadImage()
         {
             var file = Request.Form.Files[0];
-            var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
-            var fullPath = Path.Combine("C:\\Users\\ahmad\\OneDrive\\Documents\\VSC\\FinalProject\\LibrarySystemFrontEnd\\src\\assets\\UserImages", fileName);
 
-            using (var stream = new FileStream(fullPath, FileMode.Create))
+            if (file != null && (file.ContentType == "image/jpeg" || file.ContentType == "image/jpg" || file.ContentType == "image/png"))
             {
-                file.CopyTo(stream);
-            }
+                var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                var fullPath = Path.Combine("C:\\Users\\Ahmad\\Desktop\\LibrarySystemFrontEnd\\LibrarySystemFrontEnd\\src\\assets\\images", fileName);
 
-            User item = new User();
-            item.Profile_Img_Path = fileName;
-            return item;
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
+                User item = new User();
+                item.Profile_Img_Path = fileName;
+                return Ok(item);
+            }
+            else
+            {
+                return BadRequest("Invalid file format. Please upload an image file.");
+            }
         }
     }
-}
+

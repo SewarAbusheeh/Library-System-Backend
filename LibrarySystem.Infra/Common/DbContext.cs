@@ -27,6 +27,7 @@ namespace LibrarySystem.Infra.Common
                 {
                     _connection = new OracleConnection
                     (_configuration["ConnectionStrings:DBConnectionString"]);
+                    
                     _connection.Open();
                 }
                 else if (_connection.State != ConnectionState.Open)
