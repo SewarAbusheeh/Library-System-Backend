@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using LibrarySystem.Core.Common;
 using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Repository;
 using System;
 using System.Collections.Generic;
@@ -67,6 +68,22 @@ namespace LibrarySystem.Infra.Repository
             u.Add("p_profileImgPath", user.Profile_Img_Path, dbType: DbType.String, direction: ParameterDirection.Input);
             u.Add("p_isActivated", user.Is_Activated, dbType: DbType.String, direction: ParameterDirection.Input);
             var result = context.Connection.Execute("Users_Package.UpdateUser",u,commandType:CommandType.StoredProcedure);
+        }
+        public int NumberOfRegisteredUsers()
+        {
+            var p = new DynamicParameters();
+            p.Add("p_user_count", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            
+            context.Connection.Query("Users_Package.CountRegisteredUsers", p, commandType: CommandType.StoredProcedure);
+
+            int usersCount = p.Get<int>("p_user_count"); 
+            return usersCount;
+        }
+        
+        public List<UsersWithReservations> GetUsersWithReservations()
+        {
+            IEnumerable<UsersWithReservations> users = context.Connection.Query<UsersWithReservations>("Users_Package.GetUsersWithReservations", commandType: CommandType.StoredProcedure);
+            return users.ToList();
         }
     }
 }

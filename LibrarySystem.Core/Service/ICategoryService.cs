@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace LibrarySystem.Core.Service
         List<Category> GetAllCategories();
         Category GetCategoryById(int id);
         List<Category> GetCategoriesByLibraryId(int id);
+        List<Book> GetBooksByCategoryId(int id);
     }
 }

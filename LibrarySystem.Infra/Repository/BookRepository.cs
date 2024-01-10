@@ -133,14 +133,14 @@ namespace LibrarySystem.Infra.Repository
 
         public Book FindBestSellingBook()
         {
-            var parameters = new DynamicParameters();
-            parameters.Add("p_BestSellingBookId", dbType: DbType.Int32, direction: ParameterDirection.Output);
-            parameters.Add("p_BestSellingCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            var p = new DynamicParameters();
+            p.Add("p_BestSellingBookId", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            p.Add("p_BestSellingCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
-            dbContext.Connection.Query("Books_Package.FindBestSellingBook", parameters, commandType: CommandType.StoredProcedure);
+            dbContext.Connection.Query("Books_Package.FindBestSellingBook", p, commandType: CommandType.StoredProcedure);
 
-            int bestSellingBookId = parameters.Get<int>("p_BestSellingBookId");
-            int bestSellingCount = parameters.Get<int>("p_BestSellingCount");
+            int bestSellingBookId = p.Get<int>("p_BestSellingBookId");
+            int bestSellingCount = p.Get<int>("p_BestSellingCount");
             if (bestSellingBookId != 0)
             {
 
@@ -151,6 +151,7 @@ namespace LibrarySystem.Infra.Repository
                 // No best-selling book found
                 return null;
             }
+
         }
     }
 

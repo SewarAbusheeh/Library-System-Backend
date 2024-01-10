@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -73,6 +74,13 @@ namespace LibrarySystem.API.Controllers
             {
                 return BadRequest("Invalid file format. Please upload an image file.");
             }
+        }
+
+        [Route("GetBorrowedBooksCountInLibraries")]
+        [HttpGet]
+        public List<BorrowedBooks_LibraryDTO> GetBorrowedBooksCountInLibraries()
+        {
+            return libraryService.GetBorrowedBooksCountInLibraries();
         }
 
     }
