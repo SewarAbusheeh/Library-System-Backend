@@ -78,6 +78,14 @@ namespace LibrarySystem.Infra.Repository
            
             IEnumerable<BorrowedBooksDetails> result = dbContext.Connection.Query<BorrowedBooksDetails>("GetBorrowedBooksDetails1", commandType: CommandType.StoredProcedure);
             return result.ToList();
-        }                                     
+        }
+        public List<GetBorrowedBooksDetailsByUserIdDTO> BorrowedbooksByIdUser(int id)
+        {
+            var p = new DynamicParameters();
+            p.Add("p_user_id", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            IEnumerable<GetBorrowedBooksDetailsByUserIdDTO> result = dbContext.Connection.Query<GetBorrowedBooksDetailsByUserIdDTO>("GetBorrowedBooksDetailsByUserId", p, commandType: CommandType.StoredProcedure);
+            return result.ToList();
+
+        }
     }
 }

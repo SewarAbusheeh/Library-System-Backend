@@ -51,6 +51,12 @@ namespace LibrarySystem.API.Controllers
         {
             return borrowedBookService.GetBorrowedBooksDetails();
         }
+        [HttpGet]
+        [Route("BorrowedbooksByIdUser")]
+        public List<GetBorrowedBooksDetailsByUserIdDTO> BorrowedbooksByIdUser(int id )
+        {
+            return borrowedBookService.BorrowedbooksByIdUser(id);
+        }
 
     }
 }
