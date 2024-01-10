@@ -17,5 +17,7 @@ namespace LibrarySystem.Core.Repository
         User GetUserById(int id);
         public int NumberOfRegisteredUsers();
         public List<UsersWithReservations> GetUsersWithReservations();
+        void CreateUserLogin(UserLogin userLogin);
+
     }
 }

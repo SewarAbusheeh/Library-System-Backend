@@ -85,5 +85,23 @@ namespace LibrarySystem.Infra.Repository
             IEnumerable<UsersWithReservations> users = context.Connection.Query<UsersWithReservations>("Users_Package.GetUsersWithReservations", commandType: CommandType.StoredProcedure);
             return users.ToList();
         }
+        public void CreateUserLogin(UserLogin userLogin)
+        {
+            var u = new DynamicParameters();
+            u.Add("p_firstName", userLogin.First_Name, dbType: DbType.String, direction: ParameterDirection.Input);
+            u.Add("p_lastName", userLogin.Last_Name, dbType: DbType.String, direction: ParameterDirection.Input);
+            u.Add("p_email", userLogin.Email, dbType: DbType.String, direction: ParameterDirection.Input);
+            u.Add("p_locationLatitude", userLogin.Location_Latitude, dbType: DbType.String, direction: ParameterDirection.Input);
+            u.Add("p_locationLongitude", userLogin.Location_Longitude, dbType: DbType.String, direction: ParameterDirection.Input);
+            u.Add("p_phoneNumber", userLogin.Phone_Number, dbType: DbType.String, direction: ParameterDirection.Input);
+            u.Add("p_profileImgPath", userLogin.Profile_Img_Path, dbType: DbType.String, direction: ParameterDirection.Input);
+            u.Add("p_registrationDate", userLogin.Registration_Date, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+            u.Add("p_isActivated", userLogin.Is_Activated, dbType: DbType.String, direction: ParameterDirection.Input);
+            u.Add("p_username", userLogin.Username, dbType: DbType.String, direction: ParameterDirection.Input);
+            u.Add("p_password", userLogin.Password, dbType: DbType.String, direction: ParameterDirection.Input);
+            //u.Add("p_user_id", userLogin.User_Id, dbType: DbType.String, direction: ParameterDirection.Output);
+            u.Add("p_role_id", userLogin.Role_Id , dbType: DbType.String, direction: ParameterDirection.Input);
+            var result2 = context.Connection.Execute("CreateUserLogin", u, commandType: CommandType.StoredProcedure);
+        }
     }
 }

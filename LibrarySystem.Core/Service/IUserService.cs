@@ -18,5 +18,6 @@ namespace LibrarySystem.Core.Service
 
          int NumberOfRegisteredUsers();
         List<UsersWithReservations> GetUsersWithReservations();
+        void CreateUserLogin(UserLogin userLogin);
     }
 }

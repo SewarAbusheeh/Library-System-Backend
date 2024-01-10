@@ -87,6 +87,12 @@ namespace LibrarySystem.API.Controllers
                 return BadRequest("Invalid file format. Please upload an image file.");
             }
         }
+        [Route("CreateUserLogin")]
+        [HttpPost]
+        public void CreateUserLogin(UserLogin userLogin)
+        {
+            userService.CreateUserLogin(userLogin);
+        }
     }
 }
 

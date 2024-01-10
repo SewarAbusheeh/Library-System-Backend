@@ -49,5 +49,9 @@ namespace LibrarySystem.Infra.Service
         {
             return userRepository.GetUsersWithReservations();
         }
+        public void CreateUserLogin( UserLogin userLogin)
+        {
+            userRepository.CreateUserLogin(userLogin);
+        }
     }
 }
