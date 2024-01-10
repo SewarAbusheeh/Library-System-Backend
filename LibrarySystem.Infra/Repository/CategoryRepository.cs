@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using LibrarySystem.Core.Common;
 using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Repository;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace LibrarySystem.Infra.Repository
 {
@@ -83,6 +85,17 @@ namespace LibrarySystem.Infra.Repository
             var result = dbContext.Connection.Query<Category>("GetCategoryByLibraryId", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
-    }
    
+
+        List<Book> ICategoryRepository.GetBooksByCategoryId(int id)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("p_CategoryID", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+
+            // Call the stored procedure and retrieve the results
+            var result = dbContext.Connection.Query<Book>("GetBooksByCategory1", parameters, commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+    }
+
 }

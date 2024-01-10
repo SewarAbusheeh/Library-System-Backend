@@ -1,5 +1,7 @@
 ﻿using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Service;
+using LibrarySystem.Infra.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -55,6 +57,12 @@ namespace LibrarySystem.API.Controllers
         public List<Category> GetCategoriesByLibraryId(int id)
         {
             return categoryService.GetCategoriesByLibraryId(id);
+        }
+        [Route("GetBooksByCategoryId")]
+        [HttpGet]
+        public List<Book> GetBooksByCategoryId(int id)
+        {
+            return categoryService.GetBooksByCategoryId(id);
         }
     }
 }

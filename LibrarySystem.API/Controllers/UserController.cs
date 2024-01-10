@@ -51,6 +51,9 @@ namespace LibrarySystem.API.Controllers
         [HttpGet]
         public List<UsersWithReservations> GetUsersWithReservations()
         {
+            var file = Request.Form.Files[0];
+            var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+            var fullPath = Path.Combine("D:\\Fron-End Fixe upload images\\LibrarySystemFrontEnd\\src\\assets\\UserImages", fileName);
             return userService.GetUsersWithReservations();
         }
 
