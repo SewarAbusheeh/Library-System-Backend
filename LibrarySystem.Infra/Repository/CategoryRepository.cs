@@ -85,9 +85,8 @@ namespace LibrarySystem.Infra.Repository
             var result = dbContext.Connection.Query<Category>("GetCategoryByLibraryId", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
-   
 
-        List<Book> ICategoryRepository.GetBooksByCategoryId(int id)
+        public List<Book> GetBooksByCategoryId(int id)
         {
             var parameters = new DynamicParameters();
             parameters.Add("p_CategoryID", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
