@@ -32,6 +32,7 @@ namespace LibrarySystem.Infra.Service
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
                 var claims = new List<Claim>
                 {
+                        new Claim("username", result.Username.ToString()),
                         new Claim("roleID", result.Role_Id.ToString()),
                         new Claim("userID", result.User_Id.ToString())
                 };
