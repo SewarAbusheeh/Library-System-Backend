@@ -545,11 +545,11 @@ namespace LibrarySystem.Core.Data
                     .IsUnicode(false)
                     .HasColumnName("PASSWORD");
 
-                entity.Property(e => e.RoleId)
+                entity.Property(e => e.Role_Id)
                     .HasColumnType("NUMBER(38)")
                     .HasColumnName("ROLE_ID");
 
-                entity.Property(e => e.UserId)
+                entity.Property(e => e.User_Id)
                     .HasColumnType("NUMBER(38)")
                     .HasColumnName("USER_ID");
 
@@ -560,12 +560,12 @@ namespace LibrarySystem.Core.Data
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.Logins)
-                    .HasForeignKey(d => d.RoleId)
+                    .HasForeignKey(d => d.Role_Id)
                     .OnDelete(DeleteBehavior.SetNull);
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Logins)
-                    .HasForeignKey(d => d.UserId)
+                    .HasForeignKey(d => d.User_Id)
                     .OnDelete(DeleteBehavior.Cascade);
             });
 

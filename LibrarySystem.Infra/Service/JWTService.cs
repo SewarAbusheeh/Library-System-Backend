@@ -32,9 +32,8 @@ namespace LibrarySystem.Infra.Service
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
                 var claims = new List<Claim>
                 {
-                        new Claim(ClaimTypes.Name, result.Username),
-                        new Claim(ClaimTypes.Role, result.RoleId.ToString()),
-                        new Claim(ClaimTypes.NameIdentifier, result.UserId.ToString())
+                        new Claim("roleID", result.Role_Id.ToString()),
+                        new Claim("userID", result.User_Id.ToString())
                 };
                 var tokeOptions = new JwtSecurityToken(
                 claims: claims,

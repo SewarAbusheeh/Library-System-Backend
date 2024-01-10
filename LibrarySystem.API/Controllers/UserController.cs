@@ -52,6 +52,7 @@ namespace LibrarySystem.API.Controllers
         public List<UsersWithReservations> GetUsersWithReservations()
         {
             return userService.GetUsersWithReservations();
+        }
 
         [Route("uploadImage")]
         [HttpPost]
