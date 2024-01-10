@@ -51,24 +51,54 @@ namespace LibrarySystem.API.Controllers
         {
             return bookService.GetBookById(id);
         }
-        
+
         [Route("UploadImageBook")]
         [HttpPost]
-        public Book UploadIMage()
+        public IActionResult UploadImage()
         {
-            var file = Request.Form.Files[0];
-            var fileName = Guid.NewGuid().ToString() +
-            "_" + file.FileName;
-            var fullPath = Path.Combine("D:\\Frond End last 4 Days\\LibrarySystemFrontEnd-1\\src\\assets\\BookImages", fileName);
-            
-            using (var stream = new FileStream(fullPath, FileMode.Create))
+            var file = Request.Form.Files.FirstOrDefault();
+            if (file != null && (file.ContentType == "image/jpeg" || file.ContentType == "image/jpg" || file.ContentType == "image/png"))
             {
-                file.CopyTo(stream);
+                var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                var fullPath = Path.Combine("C:\\Users\\Ahmad\\Desktop\\LibrarySystemFrontEnd\\LibrarySystemFrontEnd\\src\\assets\\images", fileName);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
+                Book item = new Book();
+                item.Book_Img_Path = fileName;
+                return Ok(item);
             }
-            Book item = new Book();
-            item.Book_Img_Path = fileName;
-            return item;
+            else
+            {
+                return BadRequest("Invalid file format. Please upload an image file.");
+            }
         }
+
+        [Route("UploadPDFBook")]
+        [HttpPost]
+        public IActionResult UploadPDF()
+        {
+            var file = Request.Form.Files.FirstOrDefault(f => f.ContentType == "application/pdf");
+
+            if (file != null)
+            {
+                var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                var fullPath = Path.Combine("C:\\Users\\Ahmad\\Desktop\\LibrarySystemFrontEnd\\LibrarySystemFrontEnd\\src\\assets\\PDF", fileName);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
+                Book item = new Book();
+                item.Book_Pdf_Path = fileName;
+                return Ok(item);
+            }
+            else
+            {
+                return BadRequest("Invalid file format. Please upload a PDF file.");
+            }
+        }
+
 
         [Route("TopBooks")]
         [HttpGet]
@@ -90,6 +120,5 @@ namespace LibrarySystem.API.Controllers
         {
             return bookService.FindBestSellingBook();
         }
-
     }
 }

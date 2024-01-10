@@ -56,20 +56,29 @@ namespace LibrarySystem.API.Controllers
 
         [Route("uploadImage")]
         [HttpPost]
-        public Homepage UploadIMage()
+        public IActionResult UploadImage()
         {
             var file = Request.Form.Files[0];
-            var fileName = Guid.NewGuid().ToString() +
-            "_" + file.FileName;
-            var fullPath = Path.Combine("C:\\Users\\Amir Herzallah\\Desktop\\Tahaluf Internship\\01_Projects\\Final Project\\Angular\\LibrarySystem\\src\\assets\\images", fileName);
-            using (var stream = new FileStream(fullPath, FileMode.Create))
+            if (file != null && (file.ContentType == "image/jpeg" || file.ContentType == "image/jpg" || file.ContentType == "image/png"))
             {
-                file.CopyTo(stream);
+                var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                var fullPath = Path.Combine("C:\\Users\\Ahmad\\Desktop\\LibrarySystemFrontEnd\\LibrarySystemFrontEnd\\src\\assets\\images", fileName);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
+                var response = new
+                {
+                    LogoPath = fileName,
+                    Message = "File uploaded successfully."
+                };
+                return Ok(response);
             }
-            Homepage item = new Homepage();
-            item.LOGO_PATH = fileName;
-            return item;
+            else
+            {
+                return BadRequest("Invalid file format. Please upload an image file.");
+            }
         }
-      
+
     }
 }
