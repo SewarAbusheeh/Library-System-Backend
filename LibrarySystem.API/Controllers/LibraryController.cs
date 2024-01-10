@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -67,6 +68,12 @@ namespace LibrarySystem.API.Controllers
             Library item = new Library();
             item.Image_Path1 = fileName;
             return item;
+        }
+        [Route("GetBorrowedBooksCountInLibraries")]
+        [HttpGet]
+        public List<BorrowedBooks_LibraryDTO> GetBorrowedBooksCountInLibraries()
+        {
+            return libraryService.GetBorrowedBooksCountInLibraries();
         }
     }
 }

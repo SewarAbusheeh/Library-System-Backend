@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -39,23 +40,40 @@ namespace LibrarySystem.API.Controllers
         public User GetUserById(int id) { 
             return userService.GetUserById(id);
         }
-
-        [Route("uploadImage")]
-        [HttpPost]
-        public User UploadIMage()
+        
+        [Route("NumberOfRegisteredUsers")]
+        [HttpGet]
+        public int NumberOfRegisteredUsers()
+        {
+            return userService.NumberOfRegisteredUsers();   
+        }
+        [Route("GetUsersWithReservations")]
+        [HttpGet]
+        public List<UsersWithReservations> GetUsersWithReservations()
         {
             var file = Request.Form.Files[0];
             var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
             var fullPath = Path.Combine("D:\\Fron-End Fixe upload images\\LibrarySystemFrontEnd\\src\\assets\\UserImages", fileName);
+            return userService.GetUsersWithReservations();
+        }
 
-            using (var stream = new FileStream(fullPath, FileMode.Create))
+            [Route("uploadImage")]
+            [HttpPost]
+            public User UploadIMage()
             {
-                file.CopyTo(stream);
-            }
+                var file = Request.Form.Files[0];
+                var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                var fullPath = Path.Combine("C:\\Users\\ahmad\\OneDrive\\Documents\\VSC\\FinalProject\\LibrarySystemFrontEnd\\src\\assets\\UserImages", fileName);
 
-            User item = new User();
-            item.Profile_Img_Path = fileName;
-            return item;
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
+
+                User item = new User();
+                item.Profile_Img_Path = fileName;
+                return item;
+            }
         }
     }
-}
+

@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Repository;
 using LibrarySystem.Core.Service;
 using System;
@@ -41,6 +42,10 @@ namespace LibrarySystem.Infra.Service
         public void UpdateLibrary(int id, Library library)
         {
             libraryRepository.UpdateLibrary(id, library);
+        }
+       public List<BorrowedBooks_LibraryDTO> GetBorrowedBooksCountInLibraries()
+        {
+            return libraryRepository.GetBorrowedBooksCountInLibraries();
         }
     }
 }

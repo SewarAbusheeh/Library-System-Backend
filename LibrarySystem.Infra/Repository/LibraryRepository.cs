@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using LibrarySystem.Core.Common;
 using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Repository;
 using System;
 using System.Collections.Generic;
@@ -77,6 +78,12 @@ namespace LibrarySystem.Infra.Repository
 
 
             var result = dbContext.Connection.Execute("LIBRARIES_PACKAGE.UpdateLibrary", p, commandType: CommandType.StoredProcedure);
+        }
+
+        public List<BorrowedBooks_LibraryDTO> GetBorrowedBooksCountInLibraries()
+        {
+            var result = dbContext.Connection.Query<BorrowedBooks_LibraryDTO>("LIBRARIES_PACKAGE.GetBorrowedBooksCountInLibraries", commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
     }
 }
