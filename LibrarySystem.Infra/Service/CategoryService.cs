@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Repository;
 using LibrarySystem.Core.Service;
 using System;
@@ -46,5 +47,10 @@ namespace LibrarySystem.Infra.Service
         {
            return  categoryRepository.GetCategoriesByLibraryId(id);
         }
+        public List<Book> GetBooksByCategoryId(int id)
+        {
+            return categoryRepository.GetBooksByCategoryId(id);
+        }
+       
     }
 }

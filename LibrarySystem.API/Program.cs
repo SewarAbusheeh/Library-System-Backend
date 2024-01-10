@@ -113,9 +113,7 @@ builder.Services.AddCors(corsOptions =>
 
 // Build the application
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
-
 // If the application is in development mode
 if (app.Environment.IsDevelopment())
 {
