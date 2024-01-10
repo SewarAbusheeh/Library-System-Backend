@@ -17,35 +17,40 @@ namespace LibrarySystem.API.Controllers
         }
         [Route("CreateUser")]
         [HttpPost]
-        public void CreatUser(User user) {
+        public void CreatUser(User user)
+        {
             userService.CreateUser(user);
         }
         [Route("DeleteUser")]
         [HttpDelete]
-        public void DeleteUser(int id) {
+        public void DeleteUser(int id)
+        {
             userService.DeleteUser(id);
         }
         [Route("UpdateUser")]
         [HttpPut]
-        public void UpdateUser(int id,User user) {
-            userService.UpdateUser(id,user);
+        public void UpdateUser(int id, User user)
+        {
+            userService.UpdateUser(id, user);
         }
         [Route("GetAllUsers")]
         [HttpGet]
-        public List<User> GetAllUsers() { 
+        public List<User> GetAllUsers()
+        {
             return userService.GetAllUsers();
         }
         [Route("GetUserById")]
         [HttpGet]
-        public User GetUserById(int id) { 
+        public User GetUserById(int id)
+        {
             return userService.GetUserById(id);
         }
-        
+
         [Route("NumberOfRegisteredUsers")]
         [HttpGet]
         public int NumberOfRegisteredUsers()
         {
-            return userService.NumberOfRegisteredUsers();   
+            return userService.NumberOfRegisteredUsers();
         }
         [Route("GetUsersWithReservations")]
         [HttpGet]
@@ -57,23 +62,22 @@ namespace LibrarySystem.API.Controllers
             return userService.GetUsersWithReservations();
         }
 
-            [Route("uploadImage")]
-            [HttpPost]
-            public User UploadIMage()
+        [Route("uploadImage")]
+        [HttpPost]
+        public User UploadIMage()
+        {
+            var file = Request.Form.Files[0];
+            var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+            var fullPath = Path.Combine("C:\\Users\\ahmad\\OneDrive\\Documents\\VSC\\FinalProject\\LibrarySystemFrontEnd\\src\\assets\\UserImages", fileName);
+
+            using (var stream = new FileStream(fullPath, FileMode.Create))
             {
-                var file = Request.Form.Files[0];
-                var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
-                var fullPath = Path.Combine("C:\\Users\\ahmad\\OneDrive\\Documents\\VSC\\FinalProject\\LibrarySystemFrontEnd\\src\\assets\\UserImages", fileName);
-
-                using (var stream = new FileStream(fullPath, FileMode.Create))
-                {
-                    file.CopyTo(stream);
-                }
-
-                User item = new User();
-                item.Profile_Img_Path = fileName;
-                return item;
+                file.CopyTo(stream);
             }
+
+            User item = new User();
+            item.Profile_Img_Path = fileName;
+            return item;
         }
     }
-
+}
