@@ -46,5 +46,10 @@ namespace LibrarySystem.Infra.Service
         {
             return borrowedBookRepository.BorrowedbooksByIdUser(id);
         }
+
+        public GetBorrowedBooksDetailsByUserIdDTO GetBorrowedBooksDetailsByUserIdAndBookID(int userID, int bookID)
+        {
+            return borrowedBookRepository.GetBorrowedBooksDetailsByUserIdAndBookID(userID, bookID);
+        }
     }
 }

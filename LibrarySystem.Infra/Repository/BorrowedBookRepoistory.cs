@@ -87,5 +87,15 @@ namespace LibrarySystem.Infra.Repository
             return result.ToList();
 
         }
+
+        public GetBorrowedBooksDetailsByUserIdDTO GetBorrowedBooksDetailsByUserIdAndBookID(int userID, int bookID)
+        {
+            var p = new DynamicParameters();
+            p.Add("p_user_id", userID, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("p_book_id", bookID, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            IEnumerable<GetBorrowedBooksDetailsByUserIdDTO> result = dbContext.Connection.Query<GetBorrowedBooksDetailsByUserIdDTO>("GetBorrowedBooksDetailsByUserIdAndBookID", p, commandType: CommandType.StoredProcedure);
+            return result.FirstOrDefault();
+
+        }
     }
 }

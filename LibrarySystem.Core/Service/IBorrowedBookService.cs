@@ -17,5 +17,6 @@ namespace LibrarySystem.Core.Service
         Borrowedbook GetBorrowedBookById(int id);
         List<BorrowedBooksDetails> GetBorrowedBooksDetails();
         List<GetBorrowedBooksDetailsByUserIdDTO> BorrowedbooksByIdUser(int id);
+        GetBorrowedBooksDetailsByUserIdDTO GetBorrowedBooksDetailsByUserIdAndBookID(int userID, int bookID);
     }
 }
