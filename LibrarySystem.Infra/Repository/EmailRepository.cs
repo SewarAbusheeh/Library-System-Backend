@@ -60,8 +60,8 @@ namespace LibrarySystem.Infra.Repository
 
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse("booksawforlibraries@gmail.com"));
-            email.To.Add(MailboxAddress.Parse("booksawforlibraries@gmail.com"));
-            email.Subject = "test";
+            email.To.Add(MailboxAddress.Parse(borrowedBooks.Email));
+            email.Subject = "Invoice";
             var Body = new BodyBuilder();
             email.Body = Body.Attachments.Add(currentDirectory + "/files/Invoice.pdf");
 
