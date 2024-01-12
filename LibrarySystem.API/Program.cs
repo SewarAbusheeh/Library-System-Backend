@@ -84,6 +84,9 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITestimonialRepository, TestimonialRepository>();
 builder.Services.AddScoped<ITestimonialService, TestimonialService>();
 
+builder.Services.AddScoped<IEmailRepository, EmailRepository>();
+builder.Services.AddScoped<IEmailService, EmailService>();
+
 // Configure JWT authentication
 builder.Services.AddAuthentication(opt =>
 {
