@@ -314,12 +314,12 @@ namespace LibrarySystem.Core.Data
 
             modelBuilder.Entity<Contactu>(entity =>
             {
-                entity.HasKey(e => e.ContactusId)
+                entity.HasKey(e => e.Contactus_Id)
                     .HasName("PK_CONTACTUS_CONTACTUS_ID");
 
                 entity.ToTable("CONTACTUS");
 
-                entity.Property(e => e.ContactusId)
+                entity.Property(e => e.Contactus_Id)
                     .HasColumnType("NUMBER(38)")
                     .ValueGeneratedOnAdd()
                     .HasColumnName("CONTACTUS_ID");
