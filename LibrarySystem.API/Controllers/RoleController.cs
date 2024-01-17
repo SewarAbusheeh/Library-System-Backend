@@ -1,5 +1,6 @@
 ﻿using LibrarySystem.Core.Data;
 using LibrarySystem.Core.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,27 +17,37 @@ namespace LibrarySystem.API.Controllers
         }
         [Route("CreateRole")]
         [HttpPost]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void CreateRole(Role role) { 
             roleService.CreateRole(role);
         }
         [Route("UpdateRole")]
-        [HttpPut] 
+        [HttpPut]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void UpdateRole(int id,Role role) {
             roleService.UpdateRole(id,role);
         }
         [Route("DeleteRole")]
-        [HttpDelete] 
+        [HttpDelete]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void DeleteRole(int id)
         {
             roleService.DeleteRole(id);
         }
         [Route("GetAllRoles")]
         [HttpGet]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public List<Role> GetAllRoles() {
             return roleService.GetAllRoles();
         }
         [Route("GetRoleById")]
         [HttpGet]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public Role GetRoleById(int id) {
             return roleService.GetRoleById(id);
         }

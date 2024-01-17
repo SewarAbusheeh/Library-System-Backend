@@ -1,6 +1,7 @@
 ﻿using LibrarySystem.Core.Data;
 using LibrarySystem.Core.Service;
 using LibrarySystem.Infra.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,8 @@ namespace LibrarySystem.API.Controllers
 
         [Route("CreateBook")]
         [HttpPost]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void CreateBook(Book book)
         {
             bookService.CreateBook(book);
@@ -26,6 +29,8 @@ namespace LibrarySystem.API.Controllers
 
         [Route("DeleteBook")]
         [HttpDelete]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void DeleteBook(int id)
         {
             bookService.DeleteBook(id);
@@ -33,6 +38,8 @@ namespace LibrarySystem.API.Controllers
 
         [Route("UpdateBook")]
         [HttpPut]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void UpdateBook(int id,Book book)
         {
             bookService.UpdateBook(id, book);
@@ -54,6 +61,8 @@ namespace LibrarySystem.API.Controllers
 
         [Route("UploadImageBook")]
         [HttpPost]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public IActionResult UploadImage()
         {
             var file = Request.Form.Files.FirstOrDefault();

@@ -1,5 +1,6 @@
 ﻿using LibrarySystem.Core.Data;
 using LibrarySystem.Core.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -35,12 +36,16 @@ namespace LibrarySystem.API.Controllers
         }
         [HttpDelete]
         [Route("DeleteBookReview/{id}")]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void DeleteBookReview(int id)
         {
             bookReviewService.DeleteBookReview(id);
         }
         [HttpPut]
         [Route("UpdateBookReview")]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void UpdateBookReview(BookReview bookReview)
         {
             bookReviewService.UpdateBookReview(bookReview);

@@ -72,7 +72,7 @@ namespace LibrarySystem.API.Controllers
             if (file != null && (file.ContentType == "image/jpeg" || file.ContentType == "image/jpg" || file.ContentType == "image/png"))
             {
                 var fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
-                var fullPath = Path.Combine("C:\\Users\\Ahmad\\Desktop\\LibrarySystemFrontEnd\\LibrarySystemFrontEnd\\src\\assets\\images", fileName);
+                var fullPath = Path.Combine("D:\\Frond End last 4 Days\\LibrarySystemFrontEnd-6\\src\\assets\\images", fileName);
 
                 using (var stream = new FileStream(fullPath, FileMode.Create))
                 {

@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using LibrarySystem.Core.Data;
 using LibrarySystem.Core.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
@@ -33,6 +34,8 @@ namespace LibrarySystem.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         [Route("CreateHomePageData")]
         public void CreateHomePageData(Homepage homePage)
         {
@@ -40,6 +43,8 @@ namespace LibrarySystem.API.Controllers
         }
 
         [HttpPut]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         [Route("UpdateHomePageData")]
         public void UpdateHomePageData(Homepage homePage)
         {
@@ -47,6 +52,8 @@ namespace LibrarySystem.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         [Route("DeleteHomePageData/{id}")]
         public void DeleteHomePageData(int id)
         {
@@ -55,6 +62,8 @@ namespace LibrarySystem.API.Controllers
 
 
         [Route("uploadImage")]
+        [Authorize]
+        [RequiresClaim("roleid","1")]
         [HttpPost]
         public IActionResult UploadImage()
         {

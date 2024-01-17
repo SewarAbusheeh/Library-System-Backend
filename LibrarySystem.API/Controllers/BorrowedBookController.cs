@@ -1,6 +1,7 @@
 ﻿using LibrarySystem.Core.Data;
 using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,8 @@ namespace LibrarySystem.API.Controllers
         }
         [HttpGet]
         [Route("GetAllBorrowedBooks")]
+        [Authorize]
+        [RequiresClaim("roleid", "1")] 
         public List<Borrowedbook> GetAllBorrowedBooks()
         {
             return borrowedBookService.GetAllBorrowedBooks();
@@ -35,12 +38,16 @@ namespace LibrarySystem.API.Controllers
         }
         [HttpDelete]
         [Route("DeleteBorrowedBook/{id}")]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void DeleteBorrowedBook(int id)
         {
             borrowedBookService.DeleteBorrowedBook(id);
         }
         [HttpPut]
         [Route("UpdateBorrowedBook")]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void UpdateBorrowedBook(Borrowedbook borrowedBook) 
         {
             borrowedBookService.UpdateBorrowedBook(borrowedBook);

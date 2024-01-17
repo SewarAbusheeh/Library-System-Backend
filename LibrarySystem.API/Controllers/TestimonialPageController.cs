@@ -1,6 +1,7 @@
 ﻿using LibrarySystem.Core.Data;
 using LibrarySystem.Core.Service;
 using LibrarySystem.Infra.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,18 +30,24 @@ namespace LibrarySystem.API.Controllers
         }
         [HttpPost]
         [Route("CreateTestimonialPageData")]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void CreateTestimonialPageData(Testimonialpage testimonialpage)
         {
             testimonialPageService.CreateTestimonialPageData(testimonialpage);
         }
         [HttpPut]
         [Route("UpdateTestimonialPageData")]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void UpdateTestimonialPageData(Testimonialpage testimonialpage)
         {
             testimonialPageService.UpdateTestimonialPageData(testimonialpage);
         }
         [HttpDelete]
         [Route("DeleteTestimonialPageData")]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void DeleteTestimonialPageData(int id)
         {
             testimonialPageService.DeleteTestimonialPageData(id);

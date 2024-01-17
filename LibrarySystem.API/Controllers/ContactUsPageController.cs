@@ -1,5 +1,6 @@
 ﻿using LibrarySystem.Core.Data;
 using LibrarySystem.Core.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +20,8 @@ namespace LibrarySystem.API.Controllers
             }
 
             [HttpGet]
-            [Route("GetAllContactUsPageData")]
+       
+        [Route("GetAllContactUsPageData")]
             public ActionResult<List<Contactuspage>> GetAllContactUsPageData()
             {
                 return contactUsPageService.GetAllContactUsPageData();
@@ -38,7 +40,9 @@ namespace LibrarySystem.API.Controllers
             }
 
             [HttpPost]
-            [Route("CreateContactUsPageData")]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
+        [Route("CreateContactUsPageData")]
             public IActionResult CreateContactUsPageData(Contactuspage contactUsPage)
             {
                 contactUsPageService.CreateContactUsPageData(contactUsPage);
@@ -46,7 +50,9 @@ namespace LibrarySystem.API.Controllers
             }
 
             [HttpPut]
-            [Route("UpdateContactUsPageData")]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
+        [Route("UpdateContactUsPageData")]
             public IActionResult UpdateContactUsPageData(Contactuspage contactUsPage)
             {
                 contactUsPageService.UpdateContactUsPageData(contactUsPage);
@@ -54,7 +60,9 @@ namespace LibrarySystem.API.Controllers
             }
 
             [HttpDelete]
-            [Route("DeleteContactUsPageData/{id}")]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
+        [Route("DeleteContactUsPageData/{id}")]
             public IActionResult DeleteContactUsPageData(int id)
             {
                 contactUsPageService.DeleteContactUsPageData(id);
