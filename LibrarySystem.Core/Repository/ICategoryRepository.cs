@@ -17,5 +17,6 @@ namespace LibrarySystem.Core.Repository
         Category GetCategoryById(int id);
         List<Category> GetCategoriesByLibraryId(int id);
         List<Book> GetBooksByCategoryId(int id);
+        List<CategoryLibrary> GetAllCategoryLibraries();
     }
 }

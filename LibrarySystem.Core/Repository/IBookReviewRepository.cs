@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace LibrarySystem.Core.Repository
         void DeleteBookReview(int id);
         public void UpdateBookReview(BookReview bookReview);
         BookReview GetBookReviewById(int id);
+        public List<BookReviewWithBookInfo> GetBookNameAndReview();
     }
 }

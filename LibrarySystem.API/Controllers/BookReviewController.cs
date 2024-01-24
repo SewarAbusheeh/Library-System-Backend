@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -44,6 +45,13 @@ namespace LibrarySystem.API.Controllers
         public void UpdateBookReview(BookReview bookReview)
         {
             bookReviewService.UpdateBookReview(bookReview);
+        }
+
+        [HttpGet]
+        [Route("GetBookNameAndReview")]
+        public List<BookReviewWithBookInfo> GetBookNameAndReview()
+        {
+            return bookReviewService.GetBookNameAndReview();
         }
     }
 }

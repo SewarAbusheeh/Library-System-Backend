@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Service;
 using LibrarySystem.Infra.Service;
 using Microsoft.AspNetCore.Http;
@@ -119,6 +120,13 @@ namespace LibrarySystem.API.Controllers
         public Book FindBestSellingBook()
         {
             return bookService.FindBestSellingBook();
+        }
+
+        [Route("GetBookInfoWithCategory")]
+        [HttpGet]
+        public List<BookWithCategory> GetBookInfoWithCategory()
+        {
+            return bookService.GetBookInfoWithCategory();
         }
     }
 }

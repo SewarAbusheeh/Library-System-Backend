@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Repository;
 using LibrarySystem.Core.Service;
 using System;
@@ -54,6 +55,11 @@ namespace LibrarySystem.Infra.Service
         public Book FindBestSellingBook()
         {
             return bookRepository.FindBestSellingBook();
+        }
+
+        public List<BookWithCategory> GetBookInfoWithCategory()
+        {
+            return bookRepository.GetBookInfoWithCategory();
         }
     }
 }
