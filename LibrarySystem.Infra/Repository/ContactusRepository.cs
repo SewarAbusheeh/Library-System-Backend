@@ -49,7 +49,7 @@ namespace LibrarySystem.Infra.Repository
         public void UpdateContactUsRequest(Contactu contactus)
         {
             var p = new DynamicParameters();
-            p.Add("p_contactUsId", contactus.ContactusId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("p_contactUsId", contactus.Contactus_Id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("p_fullName", contactus.Fullname, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_email", contactus.Email, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("p_phoneNumber", contactus.PhoneNumber, dbType: DbType.String, direction: ParameterDirection.Input);
