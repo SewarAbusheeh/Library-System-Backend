@@ -72,6 +72,7 @@ namespace LibrarySystem.Infra.Repository
         public List<BookReviewWithBookInfo> GetBookNameAndReview()
         {
 
+
 var  result = dbContext.Connection.Query<BookReviewWithBookInfo>("GetBookNameAndReview", commandType: CommandType.StoredProcedure);
 
             return result.ToList();
