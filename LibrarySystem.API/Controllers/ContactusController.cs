@@ -1,6 +1,7 @@
 ﻿using LibrarySystem.Core.Data;
 using LibrarySystem.Core.Service;
 using LibrarySystem.Infra.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,12 +17,16 @@ namespace LibrarySystem.API.Controllers
             this.contactusService = contactusService;
         }
         [HttpGet]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         [Route("GetAllContactUsRequests")]
         public List<Contactu> GetAllContactUsRequests()
         {
             return contactusService.GetAllContactUsRequests();
         }
         [HttpGet]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         [Route("GetBankAccountById/{id}")]
         public Contactu GetContactUsRequestById(int id)
         {
@@ -35,6 +40,8 @@ namespace LibrarySystem.API.Controllers
         }
         [HttpPut]
         [Route("UpdateContactUsRequest")]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void UpdateContactUsRequest(Contactu contactus)
         {
             contactusService.UpdateContactUsRequest(contactus);
@@ -42,6 +49,8 @@ namespace LibrarySystem.API.Controllers
 
         [HttpDelete]
         [Route("DeleteContactUsRequest")]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void DeleteContactUsRequest(int id)
         {
            contactusService.DeleteContactUsRequest(id);

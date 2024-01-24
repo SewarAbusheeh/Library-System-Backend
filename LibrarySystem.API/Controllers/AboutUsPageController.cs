@@ -1,5 +1,6 @@
 ﻿using LibrarySystem.Core.Data;
 using LibrarySystem.Core.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +26,8 @@ namespace LibrarySystem.API.Controllers
 
         [HttpGet]
         [Route("GetAboutUsPageDataById/{id}")]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public ActionResult<Aboutuspage> GetAboutUsPageDataById(int id)
         {
             var aboutUsPage = aboutUsPageService.GetAboutUsPageDataById(id);
@@ -37,6 +40,8 @@ namespace LibrarySystem.API.Controllers
 
         [HttpPost]
         [Route("CreateAboutUsPageData")]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public IActionResult CreateAboutUsPageData(Aboutuspage aboutUsPage)
         {
             aboutUsPageService.CreateAboutUsPageData(aboutUsPage);
@@ -45,6 +50,8 @@ namespace LibrarySystem.API.Controllers
 
         [HttpPut]
         [Route("UpdateAboutUsPageData")]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void UpdateAboutUsPageData(Aboutuspage aboutUsPage)
         {
             aboutUsPageService.UpdateAboutUsPageData(aboutUsPage);
@@ -52,6 +59,8 @@ namespace LibrarySystem.API.Controllers
 
         [HttpDelete]
         [Route("DeleteAboutUsPageData/{id}")]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public IActionResult DeleteAboutUsPageData(int id)
         {
             aboutUsPageService.DeleteAboutUsPageData(id);
@@ -60,6 +69,8 @@ namespace LibrarySystem.API.Controllers
 
         [Route("uploadImage")]
         [HttpPost]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public Aboutuspage UploadIMage()
         {
             var file = Request.Form.Files[0];

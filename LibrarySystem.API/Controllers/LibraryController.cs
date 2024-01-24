@@ -1,6 +1,7 @@
 ﻿using LibrarySystem.Core.Data;
 using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,8 @@ namespace LibrarySystem.API.Controllers
 
         [Route("CreateLibrary")]
         [HttpPost]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void CreateLibrary(Library library)
         {
             libraryService.CreateLibrary(library);
@@ -26,6 +29,8 @@ namespace LibrarySystem.API.Controllers
 
         [Route("DeleteLibrary")]
         [HttpDelete]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void DeleteLibrary(int id)
         {
             libraryService.DeleteLibrary(id);
@@ -33,6 +38,8 @@ namespace LibrarySystem.API.Controllers
 
         [Route("UpdateLibrary")]
         [HttpPut]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void UpdateLibrary(int id, Library library)
         {
             libraryService.UpdateLibrary(id, library);
@@ -55,6 +62,8 @@ namespace LibrarySystem.API.Controllers
 
         [Route("uploadImage")]
         [HttpPost]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public IActionResult UploadImage()
         {
             var file = Request.Form.Files[0];

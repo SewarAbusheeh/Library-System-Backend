@@ -2,6 +2,7 @@
 using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Service;
 using LibrarySystem.Infra.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,8 @@ namespace LibrarySystem.API.Controllers
 
         [Route("CreateCategory")]
         [HttpPost]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void CreateCategory(Category category)
         {
             categoryService.CreateCategory(category);
@@ -27,6 +30,8 @@ namespace LibrarySystem.API.Controllers
 
         [Route("UpdateCategory")]
         [HttpPut]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void UpdateCategory(int id, Category category)
         {
             categoryService.UpdateCategory(id, category);
@@ -34,6 +39,8 @@ namespace LibrarySystem.API.Controllers
 
         [Route("DeleteCategory")]
         [HttpDelete]
+        [Authorize]
+        [RequiresClaim("roleid", "1")]
         public void DeleteCategory(int id)
         {
             categoryService.DeleteCategory(id);
