@@ -51,6 +51,10 @@ namespace LibrarySystem.Infra.Service
         {
             return categoryRepository.GetBooksByCategoryId(id);
         }
-       
+       public List<CategoryLibrary> GetAllCategoryLibraries()
+        {
+            return categoryRepository.GetAllCategoryLibraries();
+        }
+
     }
 }

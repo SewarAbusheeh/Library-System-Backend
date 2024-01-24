@@ -53,6 +53,12 @@ namespace LibrarySystem.API.Controllers
             return categoryService.GetAllCategories();
         }
 
+        [Route("GetAllCategoriesLibraries")]
+        [HttpGet]
+        public List<CategoryLibrary> GetAllCategoryLibraries()
+        {
+            return categoryService.GetAllCategoryLibraries();
+        } 
         [Route("GetCategoryById")]
         [HttpGet]
         public Category GetCategoryById(int id)
@@ -71,5 +77,7 @@ namespace LibrarySystem.API.Controllers
         {
             return categoryService.GetBooksByCategoryId(id);
         }
+
+      
     }
 }

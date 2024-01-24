@@ -95,6 +95,30 @@ namespace LibrarySystem.Infra.Repository
             var result = dbContext.Connection.Query<Book>("GetBooksByCategory1", parameters, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
+        //public async Task<Category> GetAllCategoryLibraries()
+        //{
+        //    var parameters = new DynamicParameters();
+        //    var result = await dbContext.Connection.QueryAsync<Category, Library, Category>(
+        //        "GetAllCategoryLibraries",
+        //        (category, library) =>
+        //        {
+        //            category.Library = library;
+        //            return category;
+        //        },
+        //        splitOn: "Library_Id",
+        //        param: null,
+        //        commandType: CommandType.StoredProcedure
+        //    );
+
+        //    return result.FirstOrDefault();
+        //}
+        public List<CategoryLibrary> GetAllCategoryLibraries()
+        {
+
+            var result = dbContext.Connection.Query<CategoryLibrary>("GetAllCategoryLibraries", commandType: CommandType.StoredProcedure);
+
+            return result.ToList();
+        }
     }
 
 }

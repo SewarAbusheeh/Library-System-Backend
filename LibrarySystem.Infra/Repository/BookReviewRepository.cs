@@ -1,10 +1,12 @@
 ﻿using Dapper;
 using LibrarySystem.Core.Common;
 using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Repository;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 
 namespace LibrarySystem.Infra.Repository
@@ -65,6 +67,15 @@ namespace LibrarySystem.Infra.Repository
             p.Add("p_reviewId", bookReviewId);
 
             var result = dbContext.Connection.Execute("BookReview_Package.DeleteBookReview", p, commandType: CommandType.StoredProcedure);
+        }
+
+        public List<BookReviewWithBookInfo> GetBookNameAndReview()
+        {
+
+
+var  result = dbContext.Connection.Query<BookReviewWithBookInfo>("GetBookNameAndReview", commandType: CommandType.StoredProcedure);
+
+            return result.ToList();
         }
     }
 }

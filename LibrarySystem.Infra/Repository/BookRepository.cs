@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using LibrarySystem.Core.Common;
 using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using LibrarySystem.Core.Repository;
 using LibrarySystem.Infra.Service;
 using System;
@@ -152,6 +153,15 @@ namespace LibrarySystem.Infra.Repository
                 return null;
             }
 
+        }
+
+       
+               public List<BookWithCategory>  GetBookInfoWithCategory()
+        {
+
+            var result = dbContext.Connection.Query<BookWithCategory> ("GetBookInfoWithCategory", commandType: CommandType.StoredProcedure);
+
+            return result.ToList();
         }
     }
 

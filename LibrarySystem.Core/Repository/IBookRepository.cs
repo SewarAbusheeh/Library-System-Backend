@@ -1,5 +1,6 @@
 ﻿using LibrarySystem.Core.Common;
 using LibrarySystem.Core.Data;
+using LibrarySystem.Core.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace LibrarySystem.Core.Repository
         public List<Book> topBooks();
         public  Task<List<Category>> GetAllCategoryBooks();
         public Book FindBestSellingBook();
+
+        public List<BookWithCategory> GetBookInfoWithCategory();
 
     }
 }
